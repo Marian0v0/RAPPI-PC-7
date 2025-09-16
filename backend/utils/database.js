@@ -1,13 +1,12 @@
-const { Pool } = require("pg");
-require("dotenv").config();
+/**
+ * SUPABASE CONNECTION
+ * @author German Marcillo
+ */
 
-// Pool de conexiones usando las variables de .env
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-});
+const { createClient } = require( '@supabase/supabase-js');
 
-module.exports = pool;
+const supabaseUrl = 'https://zowuzxnwcfenpcxrkgqd.supabase.co';
+const supabaseKey = 'Rappi12345.67';
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+module.exports = supabase;
