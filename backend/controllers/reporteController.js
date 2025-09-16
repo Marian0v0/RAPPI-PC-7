@@ -7,7 +7,7 @@
  * @author German Marcillo
  */
 
-const reporte = require('../models/reporte');
+const reporte = require('../models/reporteModel');
 
 const reporteController = {
 
