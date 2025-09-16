@@ -10,28 +10,28 @@
 const Reporte = {
 
     all: async() => {
-        const { data, error } = await supabase.from('reporte').select('*');
+        const { data, error } = await supabase.from('reporte').select();
 
         if (error) throw error;
         return data;
     },
 
     getById: async(id_reporte) =>{
-        const { data, error } = await supabase.from('reporte').select('*').eq('id_reporte', id_reporte).single();
+        const { data, error } = await supabase.from('reporte').select().eq('id_reporte', id_reporte).single();
 
         if (error) throw error;
         return data;
     },
 
     getClientReports: async(id_cliente) =>{
-        const { data, error } = await supabase.from('reporte').select('*').eq('id_cliente', id_cliente);
+        const { data, error } = await supabase.from('reporte').select().eq('id_cliente', id_cliente);
 
         if (error) throw error;
         return data;
     },
 
     getByType: async(tipo_reporte) =>{
-        const { data, error } = await supabase.from('reporte').select('*').eq('tipo_reporte', tipo_reporte);
+        const { data, error } = await supabase.from('reporte').select().eq('tipo_reporte', tipo_reporte);
 
         if (error) throw error;
         return data;
