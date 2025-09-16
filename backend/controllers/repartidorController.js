@@ -1,50 +1,50 @@
 const pool = require('../utils/database');
 
 async function aceptarPedido(id_pedido, id_repartidor) {
-  try {
-    const result = await pool.query(
-      `UPDATE pedido 
+    try {
+        const result = await pool.query(
+            `UPDATE pedido 
        SET estado_pedido = 'aceptado', id_repartidor = $1 
        WHERE id_pedido = $2 AND estado_pedido = 'pendiente' 
        RETURNING *`,
-      [id_repartidor, id_pedido]
-    );
-    return result.rows[0];
-  } catch (error) {
-    console.error("❌ Error en aceptarPedido:", error);
-    throw error; 
-  }
+            [id_repartidor, id_pedido]
+        );
+        return result.rows[0];
+    } catch (error) {
+        console.error("❌ Error en aceptarPedido:", error);
+        throw error;
+    }
 }
 
 async function rechazarPedido(id_pedido, id_repartidor) {
-  try {
-    const result = await pool.query(
-      `UPDATE pedido 
+    try {
+        const result = await pool.query(
+            `UPDATE pedido 
        SET estado_pedido = 'rechazado'
        WHERE id_pedido = $1 AND id_repartidor = $2
        RETURNING *`,
-      [id_pedido, id_repartidor]
-    );
-    return result.rows[0];
-  } catch (error) {
-    console.error("❌ Error en rechazarPedido:", error);
-    throw error; 
-  }
+            [id_pedido, id_repartidor]
+        );
+        return result.rows[0];
+    } catch (error) {
+        console.error("❌ Error en rechazarPedido:", error);
+        throw error;
+    }
 }
 
 async function obtenerPedidos(id_repartidor) {
     try {
         const result = await pool.query(
-        `SELECT * FROM pedido 
+            `SELECT * FROM pedido 
         WHERE id_repartidor = $1`,
-        [id_repartidor]
+            [id_repartidor]
         );
-        return result.rows; 
+        return result.rows;
     } catch (error) {
         console.error("❌ Error en obtenerPedidos:", error);
-        throw error; 
+        throw error;
     }
-  
+
 }
 
 async function actualizarEstadoPedido(id_pedido, estado_pedido) {
@@ -56,12 +56,12 @@ async function actualizarEstadoPedido(id_pedido, estado_pedido) {
             RETURNING *`,
             [estado_pedido, id_pedido]
         );
-    return result.rows[0];
+        return result.rows[0];
     } catch (error) {
         console.error("❌ Error en actualizarEstadoPedido:", error);
-        throw error;         
+        throw error;
     }
-  
+
 }
 
 async function guardarCalificacion(id_repartidor, tipo_calificacion, sugerencia_calificacion, valoracion) {
@@ -72,12 +72,12 @@ async function guardarCalificacion(id_repartidor, tipo_calificacion, sugerencia_
             RETURNING *`,
             [id_repartidor, tipo_calificacion, sugerencia_calificacion, valoracion]
         );
-        return result.rows[0];   
+        return result.rows[0];
     } catch (error) {
         console.error("❌ Error en guardarCalificacion:", error);
-        throw error; 
+        throw error;
     }
-  
+
 }
 
 async function obtenerCalificaciones(id_repartidor) {
@@ -87,12 +87,12 @@ async function obtenerCalificaciones(id_repartidor) {
             WHERE id_repartidor = $1`,
             [id_repartidor]
         );
-         return result.rows;    
+        return result.rows;
     } catch (error) {
         console.error("❌ Error en obtenerCalificaciones:", error);
-        throw error;         
+        throw error;
     }
- 
+
 }
 
 async function actualizarDisponibilidad(id_repartidor, id_estado) {
@@ -104,14 +104,14 @@ async function actualizarDisponibilidad(id_repartidor, id_estado) {
             RETURNING *`,
             [id_estado, id_repartidor]
         );
-        return result.rows[0];   
+        return result.rows[0];
     } catch (error) {
         console.error("❌ Error en actualizarDisponibilidad:", error);
         throw error;
     }
 }
 
-module.exports = { 
+module.exports = {
     aceptarPedido,
     rechazarPedido,
     obtenerPedidos,
