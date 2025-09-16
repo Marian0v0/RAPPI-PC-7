@@ -1,3 +1,4 @@
+
 /**
  * SUPABASE CONNECTION
  * @author German Marcillo
@@ -10,3 +11,4 @@ const supabaseKey = 'Rappi12345.67';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 module.exports = supabase;
+
