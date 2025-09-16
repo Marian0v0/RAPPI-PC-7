@@ -17,7 +17,7 @@ const Reporte = {
     },
 
     getById: async(id_reporte) =>{
-        const { data, error } = await supabase.from('reporte').select('*').eq('id_reporte', id_reporte);
+        const { data, error } = await supabase.from('reporte').select('*').eq('id_reporte', id_reporte).single();
 
         if (error) throw error;
         return data;
@@ -56,7 +56,7 @@ const Reporte = {
 
         if (error) throw error;
         return data[0];
-  }
+  },
 
 };
 
