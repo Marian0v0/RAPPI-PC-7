@@ -60,6 +60,15 @@ const reporteController = {
         }
     },
 
+    createReporte: async (req, res) => {   
+        try {
+            const newReporte = await reporte.create(req.body);
+            res.status(201).json({ success: true, data: newReporte });
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
+    },
+
 };
 
 module.exports = reporteController;
