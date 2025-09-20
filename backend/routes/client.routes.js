@@ -9,7 +9,7 @@
 
 const express = require('express');
 const router = express.Router();
-const clienteController = require('../controllers/clienteController');
+const clienteController = require('../controllers/client.controller');
 
 /**
  * GET /backend/clientes
