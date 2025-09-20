@@ -7,6 +7,8 @@
  * @author German Marcillo
  */
 
+const supabase = require('../utils/database');
+
 const Reporte = {
 
     all: async() => {
