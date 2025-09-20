@@ -13,13 +13,12 @@ const Reporte = {
 
     all: async() => {
         const { data, error } = await supabase.from('reportes').select();
-
         if (error) throw error;
         return data;
     },
 
     getById: async(id_reporte) =>{
-        const { data, error } = await supabase.from('reportes').select().eq('id_reporte', id_reporte).single();
+        const { data, error } = await supabase.from('reportes').select().eq('id_reporte', id_reporte);
 
         if (error) throw error;
         return data;
@@ -40,7 +39,7 @@ const Reporte = {
     },
 
     create: async(userData) =>{
-        const { data, error } = await supabase.from('reportes').insert([{userData}]).select('*');
+        const { data, error } = await supabase.from('reportes').insert([{userData}]).select();
     
         if (error) throw error;
         return data[0];
@@ -54,7 +53,7 @@ const Reporte = {
     },
 
     edit_report : async (id_reporte, newDescripcion) => {
-        const { data, error } = await supabase.from('reportes').update({descripcion: newDescripcion}).eq('id_reporte', id_reporte).select('*');
+        const { data, error } = await supabase.from('reportes').update({descripcion: newDescripcion}).eq('id_reporte', id_reporte).select();
 
         if (error) throw error;
         return data[0];
