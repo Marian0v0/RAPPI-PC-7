@@ -7,10 +7,10 @@
  * @author Juan Moncayo
  */
 
-const Cliente = require('../models/cliente');
+const Cliente = require('../models/client.model');
 const bcrypt = require('bcrypt');
 
-const clienteController = {
+const clientController = {
 
     /**
      * Handles GET request to retrieve all client records.
@@ -228,4 +228,4 @@ const clienteController = {
 
 };
 
-module.exports = clienteController;
+module.exports = clientController;
