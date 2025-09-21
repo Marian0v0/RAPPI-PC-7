@@ -39,7 +39,7 @@ const Reporte = {
     },
 
     create: async(userData) =>{
-        const { data, error } = await supabase.from('reportes').insert([{userData}]).select();
+        const { data, error } = await supabase.from('reportes').insert([userData]).select();
     
         if (error) throw error;
         return data[0];

@@ -23,4 +23,6 @@ router.post('/reportes/create', reporteController.createReporte);
 
 router.put('/reportes/edit', reporteController.editReporte);
 
+router.delete('/reportes/delete/:id_reporte', reporteController.deleteReporte);
+
 module.exports = router;
