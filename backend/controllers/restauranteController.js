@@ -11,7 +11,7 @@ export const RestauranteController = {
     }
   },
 
-  // Obtener todos los restaurantes
+  // Obtener todos los restaurantes (con toda la info)
   async getTodosRestaurantes(req, res) {
     try {
       const data = await RestauranteModel.obtenerTodosRestaurantes();
@@ -21,7 +21,7 @@ export const RestauranteController = {
     }
   },
 
-  // Obtener restaurantes sin contraseña
+  // Obtener info de restaurantes (sin contraseña)
   async getInfoRestaurantes(req, res) {
     try {
       const data = await RestauranteModel.obtenerInfoRestaurantes();
@@ -31,7 +31,7 @@ export const RestauranteController = {
     }
   },
 
-  // Buscar por ID
+  // Buscar restaurante por ID
   async getRestauranteById(req, res) {
     try {
       const { id } = req.params;
@@ -42,7 +42,7 @@ export const RestauranteController = {
     }
   },
 
-  // Buscar por tipo de comida
+  // Buscar restaurantes por tipo de comida
   async getRestaurantesByTipo(req, res) {
     try {
       const { tipo } = req.params;
@@ -53,11 +53,22 @@ export const RestauranteController = {
     }
   },
 
-  // Buscar por nombre
+  // Buscar restaurantes por nombre
   async getRestaurantesByNombre(req, res) {
     try {
       const { nombre } = req.params;
       const data = await RestauranteModel.bucarRestauranteNombre(nombre);
+      res.json(data);
+    } catch (error) {
+      res.status(404).json({ error: error.message });
+    }
+  },
+
+  // Buscar restaurante por email
+  async getRestauranteByEmail(req, res) {
+    try {
+      const { email } = req.params;
+      const data = await RestauranteModel.bucarRestauranteEmail(email);
       res.json(data);
     } catch (error) {
       res.status(404).json({ error: error.message });
@@ -75,7 +86,7 @@ export const RestauranteController = {
     }
   },
 
-  // Actualizar información
+  // Actualizar información del restaurante
   async actualizarRestaurante(req, res) {
     try {
       const { id } = req.params;
