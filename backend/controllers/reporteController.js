@@ -7,7 +7,7 @@
  * @author German Marcillo
  */
 
-const reporte = require('../models/reporte');
+const reporte = require('../models/reporteModel');
 
 const reporteController = {
 
@@ -15,7 +15,6 @@ const reporteController = {
         try {
             const reportes = await reporte.all();
             res.json({ success: true, data: reportes });
-        
         }catch (error) {
             res.status(500).json({ success: false, error: error.message });
         }
