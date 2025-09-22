@@ -1,3 +1,10 @@
+/**
+ * Este módulo maneja la funcionalidad de rutas para "producto".
+ * 
+ * @module producto
+ */
+
+
 // routes/productoRoutes.js
 const express = require('express')
 const router = express.Router()

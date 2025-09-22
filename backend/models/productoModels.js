@@ -1,8 +1,7 @@
 // models/productoModel.js
 
 /**
- * Este módulo maneja la funcionalidad para la tabla "producto".
- * Exporta un objeto con métodos para listar, crear, actualizar y eliminar productos.
+ * Este módulo maneja la funcionalidad para la gestion de "producto".
  * 
  * @module producto
  */
