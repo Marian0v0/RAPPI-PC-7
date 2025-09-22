@@ -1,6 +1,6 @@
-import { RestauranteModel } from "../models/restauranteModel.js";
+const { RestauranteModel } = require("../models/restauranteModel.js");
 
-export const RestauranteController = {
+const RestauranteController = {
   // Crear restaurante
   async crearRestaurante(req, res) {
     try {
@@ -120,3 +120,4 @@ export const RestauranteController = {
     }
   }
 };
+module.exports = { RestauranteController };
