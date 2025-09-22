@@ -23,9 +23,9 @@ app.use(express.json());
 
 app.use('/backend', reporteRoutes);
 app.use('/backend', clienteRoutes);
+app.use('/backend/repartidor', repartidorRoutes);
 app.use('/backend', pedidoRoutes);
 app.use('/backend', pagoRoutes);
-app.use('/backend', repartidorRoutes);
 app.use('/backend/productos', productoRoutes);
 app.use('/backend', comercioRoutes);
 app.use('/backend/restaurantes', restauranteRoutes);
