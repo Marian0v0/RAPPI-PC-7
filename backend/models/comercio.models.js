@@ -68,7 +68,18 @@ const Comercio = {
     
     if (error) throw error;
     return true;
-  }
+  },
+
+  async findByEmail(correo) {
+    const { data, error } = await supabase
+      .from('comercio')
+      .select('*')
+      .eq('correo_encargado', correo)
+      .single();
+    
+    if (error) return null;  
+    return data;
+  },
 };
 
 module.exports = Comercio;

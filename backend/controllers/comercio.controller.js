@@ -1,12 +1,13 @@
 // controllers/comercio.controller.js
 const Comercio = require('../models/comercio.models');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 const ComercioController = {
   // Crear un nuevo comercio
   async create(req, res) {
     try {
       const {
+        id_comercio,
         nombre_encargado,
         apellido_encargado,
         correo_encargado,
@@ -27,6 +28,7 @@ const ComercioController = {
       const hashedPassword = await bcrypt.hash(password_encargado, 10);
 
       const nuevoComercio = await Comercio.create({
+        id_comercio,
         nombre_encargado,
         apellido_encargado,
         correo_encargado,

@@ -27,6 +27,7 @@ app.use('/backend', pedidoRoutes);
 app.use('/backend', pagoRoutes);
 app.use('/backend', repartidorRoutes);
 app.use('/backend/productos', productoRoutes);
+app.use('/backend', comercioRoutes);
 app.use('/backend/restaurantes', restauranteRoutes);
 
 app.listen(PORT, () => {
