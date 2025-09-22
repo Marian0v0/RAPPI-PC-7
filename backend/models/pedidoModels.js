@@ -11,7 +11,7 @@ const pedidoModel = {
     getAll: async () => {
         try {
             const { data, error } = await supabase
-                .from('Pedido').select('*, Cliente(*), Pedido_detalle(*, Producto(*))').order('fecha_pedido', { ascending: false });
+                .from('pedido').select('*, cliente(*), pedido_detalle(*, producto(*))').order('fecha_pedido', { ascending: false });
             if (error) throw error;
             return data;
         } catch (error) {
@@ -23,7 +23,7 @@ const pedidoModel = {
     getById: async (id_pedido) => {
         try {
             const { data, error } = await supabase
-                .from('Pedido').select('*, Cliente(*), Pedido_detalle(*, Producto(*))').eq('id_pedido', id_pedido).single();
+                .from('pedido').select('*, cliente(*), pedido_detalle(*,producto(*))').eq('id_pedido', id_pedido).single();
             if (error) throw error;
             return data;
         } catch (error) {
@@ -35,7 +35,7 @@ const pedidoModel = {
     getByCliente: async (id_cliente) => {
         try {
             const { data, error } = await supabase
-                .from('Pedido').select('*, Cliente(*), Pedido_detalle(*, Producto(*))').eq('id_cliente', id_cliente).order('fecha_pedido', { ascending: false });
+                .from('pedido').select('*, cliente(*), pedido_detalle(*, producto(*))').eq('id_cliente', id_cliente).order('fecha_pedido', { ascending: false });
             if (error) throw error;
             return data;
         } catch (error) {
@@ -47,7 +47,7 @@ const pedidoModel = {
     getByEstado: async (estado_pedido) => {
         try {
             const { data, error } = await supabase
-                .from('Pedido').select('*, Cliente(*), Pedido_detalle(*, Producto(*))').eq('estado_pedido', estado_pedido).order('fecha_pedido', { ascending: false });
+                .from('pedido').select('*, cliente(*), pedido_detalle(*, producto(*))').eq('estado_pedido', estado_pedido).order('fecha_pedido', { ascending: false });
             if (error) throw error;
             return data;
         } catch (error) {
@@ -60,8 +60,9 @@ const pedidoModel = {
         const { pedido, detalles } = pedidoData;
         try {
             let pedidoCreado;
+            const { id_pedido, ...pedidoSinId } = pedido;
             const { data: pedidoData, error: errorPedido } = await supabase
-                .from('Pedido').insert([pedido]).select().single();
+                .from('pedido').insert([pedidoSinId]).select().single();
             if (errorPedido) throw errorPedido;
             pedidoCreado = pedidoData;
             if (detalles && detalles.length > 0) {
@@ -70,7 +71,7 @@ const pedidoModel = {
                     id_pedido: pedidoCreado.id_pedido
                 }));
                 const { error: errorDetalles } = await supabase
-                    .from('Pedido_detalle').insert(detallesConPedido);
+                    .from('pedido_detalle').insert(detallesConPedido);
                 if (errorDetalles) throw errorDetalles;
             }
             return await pedidoModel.getById(pedidoCreado.id_pedido);
@@ -83,7 +84,7 @@ const pedidoModel = {
     update: async (id_pedido, pedidoData) => {
         try {
             const { data, error } = await supabase
-                .from('Pedido').update(pedidoData).eq('id_pedido', id_pedido).select().single();
+                .from('pedido').update(pedidoData).eq('id_pedido', id_pedido).select().single();
             if (error) throw error;
             return data;
         } catch (error) {
@@ -95,7 +96,7 @@ const pedidoModel = {
     updateEstado: async (id_pedido, estado_pedido) => {
         try {
             const { data, error } = await supabase
-                .from('Pedido').update({ estado_pedido }).eq('id_pedido', id_pedido).select().single();
+                .from('pedido').update({ estado_pedido }).eq('id_pedido', id_pedido).select().single();
             if (error) throw error;
             return data;
         } catch (error) {
@@ -107,10 +108,10 @@ const pedidoModel = {
     delete: async (id_pedido) => {
         try {
             const { error: errorDetalles } = await supabase
-                .from('Pedido_detalle').delete().eq('id_pedido', id_pedido);
+                .from('pedido_detalle').delete().eq('id_pedido', id_pedido);
             if (errorDetalles) throw errorDetalles;
             const { data, error } = await supabase
-                .from('Pedido').delete().eq('id_pedido', id_pedido).select().single();
+                .from('pedido').delete().eq('id_pedido', id_pedido).select().single();
             if (error) throw error;
             return data;
         } catch (error) {
@@ -122,7 +123,7 @@ const pedidoModel = {
     addProducto: async (id_pedido, productoData) => {
         try {
             const { data, error } = await supabase
-                .from('Pedido_detalle').insert([{ ...productoData, id_pedido }]).select().single();
+                .from('pedido_detalle').insert([{ ...productoData, id_pedido }]).select().single();
             if (error) throw error;
             return data;
         } catch (error) {
@@ -134,7 +135,7 @@ const pedidoModel = {
     removeProducto: async (id_pedido, id_producto) => {
         try {
             const { data, error } = await supabase
-                .from('Pedido_detalle').delete().eq('id_pedido', id_pedido).eq('id_producto', id_producto).select().single();
+                .from('pedido_detalle').delete().eq('id_pedido', id_pedido).eq('id_producto', id_producto).select().single();
             if (error) throw error;
             return data;
         } catch (error) {
@@ -146,7 +147,7 @@ const pedidoModel = {
     updateProducto: async (id_pedido, id_producto, productoData) => {
         try {
             const { data, error } = await supabase
-                .from('Pedido_detalle').update(productoData).eq('id_pedido', id_pedido).eq('id_producto', id_producto).select().single();
+                .from('pedido_detalle').update(productoData).eq('id_pedido', id_pedido).eq('id_producto', id_producto).select().single();
             if (error) throw error;
             return data;
         } catch (error) {

@@ -6,6 +6,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+
 const reporteRoutes = require('./routes/reporteRoutes');
 const comercioRoutes = require('./routes/comercio.routes');
 const productoRoutes = require('./routes/productoRoutes');
@@ -22,9 +23,11 @@ app.use(express.json());
 
 app.use('/backend', reporteRoutes);
 app.use('/backend', clienteRoutes);
-app.use('/backend', repartidorRoutes);
 app.use('/backend', pedidoRoutes);
 app.use('/backend', pagoRoutes);
+app.use('/backend', repartidorRoutes);
+app.use('/backend/productos', productoRoutes);
+app.use('/backend', comercioRoutes);
 app.use('/backend/restaurantes', restauranteRoutes);
 
 app.listen(PORT, () => {
