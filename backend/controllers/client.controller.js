@@ -7,7 +7,7 @@
  * @author Juan Moncayo
  */
 
-const Cliente = require('../models/cliente');
+const Cliente = require('../models/client.model');
 const bcrypt = require('bcrypt');
 
 const clienteController = {
