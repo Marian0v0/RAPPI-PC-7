@@ -14,3 +14,5 @@ router.get('/calificaciones/:id_repartidor', repartidorController.obtenerCalific
 router.patch('/disponibilidad/:id_repartidor', repartidorController.actualizarDisponibilidad);
 
 module.exports = router;
+
+//Comentario
