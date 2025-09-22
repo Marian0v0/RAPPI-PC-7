@@ -9,7 +9,7 @@ const cors = require('cors');
 const reporteRoutes = require('./routes/reporteRoutes');
 const comercioRoutes = require('./routes/comercio.routes');
 const productoRoutes = require('./routes/productoRoutes');
-const restaranteRoutes = require('./routes/restaurandeRoutes');
+const restauranteRoutes = require('./routes/restauranteRoutes');
 const repartidorRoutes = require('./routes/repartidorRoutes');
 const clienteRoutes = require('./routes/client.routes');
 const pedidoRoutes = require('./routes/pedidoRoutes');
@@ -25,6 +25,7 @@ app.use('/backend', clienteRoutes);
 app.use('/backend', repartidorRoutes);
 app.use('/backend', pedidoRoutes);
 app.use('/backend', pagoRoutes);
+app.use('/backend/restaurantes', restauranteRoutes);
 
 app.listen(PORT, () => {
   console.log(`Microservicio ejecutándose en puerto ${PORT}`);
