@@ -6,6 +6,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+
 const reporteRoutes = require('./routes/reporteRoutes');
 const comercioRoutes = require('./routes/comercio.routes');
 const productoRoutes = require('./routes/productoRoutes');
