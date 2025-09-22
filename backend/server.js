@@ -19,7 +19,6 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use('/backend', clientRoutes);
 app.use('/backend', reporteRoutes);
 app.use('/backend', clienteRoutes);
 app.use('/backend', repartidorRoutes);
