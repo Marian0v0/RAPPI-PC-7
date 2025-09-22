@@ -60,8 +60,9 @@ const pedidoModel = {
         const { pedido, detalles } = pedidoData;
         try {
             let pedidoCreado;
+            const { id_pedido, ...pedidoSinId } = pedido;
             const { data: pedidoData, error: errorPedido } = await supabase
-                .from('pedido').insert([pedido]).select().single();
+                .from('pedido').insert([pedidoSinId]).select().single();
             if (errorPedido) throw errorPedido;
             pedidoCreado = pedidoData;
             if (detalles && detalles.length > 0) {
