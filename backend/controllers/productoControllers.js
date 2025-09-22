@@ -1,5 +1,5 @@
 // controllers/productoController.js
-const producto = require('../models/productoModel')
+const producto = require('../models/productoModels')
 
 const productoController = {
 
