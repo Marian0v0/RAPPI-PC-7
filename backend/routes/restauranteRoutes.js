@@ -1,5 +1,5 @@
-import express from "express";
-import { RestauranteController } from "../controllers/restauranteController.js";
+const express = require("express");
+const { RestauranteController } = require("../controllers/restauranteController.js");
 
 const router = express.Router();
 
@@ -36,4 +36,4 @@ router.put("/:id/password", RestauranteController.cambiarContrasena);
 // Eliminar restaurante
 router.delete("/:id", RestauranteController.eliminarRestaurante);
 
-export default router;
+module.exports = router;

@@ -17,6 +17,7 @@ const Cliente = {
     const { data, error } = await supabase
       .from('cliente')
       .insert([{
+        id_cliente: userData.id_cliente,
         nombre_cliente: userData.nombre_cliente,
         cel_cliente: userData.cel_cliente,
         pais_cliente: userData.pais_cliente,
