@@ -1,114 +1,91 @@
+// models/productoModel.js
 
-const { supabase } = require('../utils/supabaseClient');
+/**
+ * Este módulo maneja la funcionalidad para la gestion de "producto".
+ * 
+ * @module producto
+ */
 
-class ProductoModel {
-    // Traer todos los productos
-    static async traerProductos() {
-        const { data, error } = await supabase
-            .from('producto')
-            .select(`
-                *,
-                detalles_producto:detalles_producto_id (precio_producto, biografia_producto),
-                testaurante:testaurante_id (nombre, direccion),
-                comercio:comercio_id (nombre_marca, tipo_comercio)
-            `);
-        
-        if (error) {
-            throw error;
-        }
-        return data;
-    }
+const supabase = require('../supabaseClient')
 
-    // Traer producto por ID
-    static async traerProductoPorId(id) {
-        const { data, error } = await supabase
-            .from('producto')
-            .select(`
-                *,
-                detalles_producto:detalles_producto_id (precio_producto, biografia_producto),
-                testaurante:testaurante_id (nombre, direccion),
-                comercio:comercio_id (nombre_marca, tipo_comercio)
-            `)
-            .eq('id', id)
-            .single();
-        
-        if (error) {
-            throw error;
-        }
-        return data;
-    }
+const Producto = {
+  // obtener todos los productos
+  all: async () => {
+    const { data, error } = await supabase
+      .from('producto')
+      .select(`
+        id_producto,
+        detalles_producto,
+        precio_producto,
+        fotografia_producto,
+        restaurante: id_restaurante (
+          id_restaurante,
+          nombre_restaurante,
+          tipo_comida,
+          direccion_restaurante
+        ),
+        comercio: id_comercio (
+          id_comercio,
+          nombre_marca,
+          tipo_comercio
+        )
+      `)
 
-    // Crear producto
-    static async crearProducto(nombre, descripcion, precio, testaurante_id, comercio_id, detalles_producto_id) {
-        const { data, error } = await supabase
-            .from('producto')
-            .insert([
-                { 
-                    nombre, 
-                    descripcion, 
-                    precio, 
-                    testaurante_id, 
-                    comercio_id, 
-                    detalles_producto_id 
-                }
-            ])
-            .select();
-        
-        if (error) {
-            throw error;
-        }
-        return data[0];
-    }
+    if (error) throw error
+    return data
+  },
 
-    // Actualizar producto por ID
-    static async actualizarProductoPorId(id, nombre, descripcion, precio, testaurante_id, comercio_id, detalles_producto_id) {
-        const { data, error } = await supabase
-            .from('producto')
-            .update({ 
-                nombre, 
-                descripcion, 
-                precio, 
-                testaurante_id, 
-                comercio_id, 
-                detalles_producto_id 
-            })
-            .eq('id', id)
-            .select();
-        
-        if (error) {
-            throw error;
-        }
-        return data[0];
-    }
+  // obtener un producto por id
+  getById: async (id_producto) => {
+    const { data, error } = await supabase
+      .from('producto')
+      .select('*')
+      .eq('id_producto', id_producto)
+      .single()
 
-    // Eliminar producto por ID
-    static async eliminarProductoPorId(id) {
-        const { error } = await supabase
-            .from('producto')
-            .delete()
-            .eq('id', id);
-        
-        if (error) {
-            throw error;
-        }
-        return true;
-    }
+    if (error) throw error
+    return data
+  },
 
-    // Traer productos por restaurante
-    static async traerProductosPorRestaurante(restauranteId) {
-        const { data, error } = await supabase
-            .from('producto')
-            .select(`
-                *,
-                detalles_producto:detalles_producto_id (precio_producto, biografia_producto)
-            `)
-            .eq('testaurante_id', restauranteId);
-        
-        if (error) {
-            throw error;
-        }
-        return data;
-    }
+  // crear un producto
+  create: async ({ detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }) => {
+    const { data, error } = await supabase
+      .from('producto')
+      .insert([
+        { detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }
+      ])
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  },
+
+  // actualizar un producto
+  update: async (id_producto, { detalles_producto, precio_producto, fotografia_producto }) => {
+    const { data, error } = await supabase
+      .from('producto')
+      .update({ detalles_producto, precio_producto, fotografia_producto })
+      .eq('id_producto', id_producto)
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  },
+
+  // eliminar un producto
+  delete: async (id_producto) => {
+    const { data, error } = await supabase
+      .from('producto')
+      .delete()
+      .eq('id_producto', id_producto)
+      .select()
+      .single()
+
+    if (error) throw error
+    return data
+  }
 }
 
-module.exports = ProductoModel;
+module.exports = Producto
