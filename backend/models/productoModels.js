@@ -37,7 +37,7 @@ async function obtenerProductoPorId(id_producto) {
 }
 
 
-  getByComercio: async (id_producto) => {
+  async function getByComercio (id_producto) {
     const { data, error } = await supabase
       .from('producto')
       .select()
@@ -45,9 +45,9 @@ async function obtenerProductoPorId(id_producto) {
 
     if (error) throw error
     return data
-  },
+  }
 
-  getByRestaurante: async (id_producto) => {
+ async function getByRestaurante(id_producto) {
     const { data, error } = await supabase
       .from('producto')
       .select()
@@ -55,7 +55,7 @@ async function obtenerProductoPorId(id_producto) {
 
     if (error) throw error
     return data
-  },
+  }
 
 
 // Crear un producto
@@ -109,6 +109,8 @@ async function eliminarProducto(id_producto) {
 module.exports = {
     obtenerProductos,
     obtenerProductoPorId,
+    getByComercio,
+    getByRestaurante,
     crearProducto,
     actualizarProducto,
     eliminarProducto,

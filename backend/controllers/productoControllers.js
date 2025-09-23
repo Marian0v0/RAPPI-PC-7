@@ -27,7 +27,7 @@ async function obtenerProductoPorId(req, res) {
     }
 }
 
-  getProductoByComercio: async (req, res) => {
+  async function getProductoByComercio (req, res) {
     try {
       const { id_producto } = req.params
       const result = await productoModel.getByComercio(id_producto)
@@ -35,9 +35,9 @@ async function obtenerProductoPorId(req, res) {
     } catch (error) {
       res.status(500).json({ success: false, error: error.message })
     }
-  },
+  }
 
-  getProductoByRestaurante: async (req, res) => {
+   async function getProductoByRestaurante (req, res){
     try {
       const { id_producto } = req.params
       const result = await productoModel.getByRestaurante(id_producto)
@@ -45,7 +45,7 @@ async function obtenerProductoPorId(req, res) {
     } catch (error) {
       res.status(500).json({ success: false, error: error.message })
     }
-  },
+  }
 
 //Crear producto
 async function crearProducto(req, res) {
@@ -111,6 +111,8 @@ async function eliminarProducto(req, res) {
 module.exports = {
     obtenerProductos,
     obtenerProductoPorId,
+    getProductoByComercio,
+    getProductoByRestaurante,
     crearProducto,
     actualizarProducto,
     eliminarProducto,
