@@ -59,11 +59,11 @@ async function obtenerProductoPorId(id_producto) {
 
 
 // Crear un producto
-async function crearProducto({ detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }) {
+async function crearProducto({ id_producto, detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }) {
 
     const { data, error } = await supabase
         .from('producto')
-        .insert([{ detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }])
+        .insert([{id_producto, detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }])
         .select()
         .single();
 
