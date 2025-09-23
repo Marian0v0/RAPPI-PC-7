@@ -47,18 +47,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="login"/>} />
-        <Route path="/login" element={<LoginPage/>} />
-        <Route path="/restaurantes/:nombreRestaurante" element={<VRestaurante/>} />
-        <Route path="/registro" element={<RegistroPage/>} />
-        <Route path="/registro/cliente" element={<RegistroCliente/>} />
-        <Route path="/registro/repartidor" element={<RegistroRepartidor/>} />
-        <Route path="/repartidor/login" element={<RepartidorLogin/>} />
-        <Route path="/cliente/login" element={<clientInformation/>} />
-      </Routes>
-    </Router>
+    <React.Fragment>
+      <RouterProvider router={router} />
+    </React.Fragment>
   );
 }
 
