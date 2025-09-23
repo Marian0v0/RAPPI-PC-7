@@ -1,7 +1,15 @@
-// models/productoModels.js
+
+/**
+ * Este módulo maneja la funcionalidad de models para "productos".
+ * 
+ * @module producto
+ * @author isabbb
+ */
+
+
 const supabase = require('../utils/database');
 
-// ✅ Obtener todos los productos
+//Obtener todos los productos
 async function obtenerProductos() {
     const { data, error } = await supabase
         .from('producto')
@@ -14,7 +22,7 @@ async function obtenerProductos() {
     return data;
 }
 
-// ✅ Obtener un producto por ID
+// Obtener un producto por ID
 async function obtenerProductoPorId(id_producto) {
     const { data, error } = await supabase
         .from('producto')
@@ -29,7 +37,7 @@ async function obtenerProductoPorId(id_producto) {
     return data;
 }
 
-// ✅ Crear un producto
+// Crear un producto
 async function crearProducto({ detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }) {
     const { data, error } = await supabase
         .from('producto')
@@ -44,7 +52,7 @@ async function crearProducto({ detalles_producto, precio_producto, fotografia_pr
     return data;
 }
 
-// ✅ Actualizar un producto
+// Actualizar un producto
 async function actualizarProducto(id_producto, { detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }) {
     const { data, error } = await supabase
         .from('producto')
@@ -60,7 +68,7 @@ async function actualizarProducto(id_producto, { detalles_producto, precio_produ
     return data;
 }
 
-// ✅ Eliminar un producto
+//Eliminar un producto
 async function eliminarProducto(id_producto) {
     const { data, error } = await supabase
         .from('producto')

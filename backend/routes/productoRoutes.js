@@ -2,6 +2,7 @@
  * Este módulo maneja la funcionalidad de rutas para "producto".
  * 
  * @module producto
+ * @author isabbb
  */
 
 // routes/productoRoutes.js
@@ -9,7 +10,7 @@ const express = require('express');
 const router = express.Router();
 const productoController = require('../controllers/productoControllers');
 
-// ✅ Rutas para productos
+// Rutas para productos
 
 // Obtener todos los productos
 router.get('/', productoController.obtenerProductos);

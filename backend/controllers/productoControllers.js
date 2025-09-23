@@ -1,7 +1,7 @@
 // controllers/productoController.js
 const productoModel = require('../models/productoModels');
 
-// ✅ Obtener todos los productos
+//Obtener todos los productos
 async function obtenerProductos(req, res) {
     try {
         const productos = await productoModel.obtenerProductos();
@@ -12,7 +12,7 @@ async function obtenerProductos(req, res) {
     }
 }
 
-// ✅ Obtener producto por ID
+//Obtener producto por ID
 async function obtenerProductoPorId(req, res) {
     const { id } = req.params;
     try {
@@ -27,11 +27,12 @@ async function obtenerProductoPorId(req, res) {
     }
 }
 
-// ✅ Crear producto
+//Crear producto
 async function crearProducto(req, res) {
     const { detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio } = req.body;
     try {
         const nuevoProducto = await productoModel.crearProducto({
+            id_producto,
             detalles_producto,
             precio_producto,
             fotografia_producto,
@@ -45,7 +46,7 @@ async function crearProducto(req, res) {
     }
 }
 
-// ✅ Actualizar producto
+//Actualizar producto
 async function actualizarProducto(req, res) {
     const { id } = req.params;
     const { detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio } = req.body;
@@ -70,7 +71,7 @@ async function actualizarProducto(req, res) {
     }
 }
 
-// ✅ Eliminar producto
+// Eliminar producto
 async function eliminarProducto(req, res) {
     const { id } = req.params;
     try {
