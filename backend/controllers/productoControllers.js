@@ -49,7 +49,7 @@ async function obtenerProductoPorId(req, res) {
 
 //Crear producto
 async function crearProducto(req, res) {
-    const { detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio } = req.body;
+    const { id_producto, detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio } = req.body;
 
     try {
         const nuevoProducto = await productoModel.crearProducto({
