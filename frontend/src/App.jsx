@@ -1,6 +1,11 @@
 import React from "react";
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/Login/LoginPage";
+import RepartidorLogin from "./pages/RepartidorLogin/RepartidorLogin";
+import ClienteLogin from "./pages/ClienteLogin/ClienteLogin";
+import RegistroPage from "./pages/Registro/RegistroPage";
+import RegistroCliente from "./pages/RegistroCliente/RegistroCliente";
+import RegistroRepartidor from "./pages/RegistroRepartidor/RegistroRepartidor";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +15,26 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage/>,
+  },
+  {
+    path: "/registro",
+    element: <RegistroPage/>,
+  },
+  {
+    path: "/registro/cliente",
+    element: <RegistroCliente/>,
+  },
+  {
+    path: "/registro/repartidor",
+    element: <RegistroRepartidor/>,
+  },
+  {
+    path: "/repartidor/login",
+    element: <RepartidorLogin/>,
+  },
+  {
+    path: "/cliente/login",
+    element: <ClienteLogin/>,
   },
 ]);
 

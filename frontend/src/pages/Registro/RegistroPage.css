@@ -1,0 +1,137 @@
+.registro-selector {
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 20px;
+}
+
+.registro-back-button {
+  border: 2px solid #4df0ab !important;
+  background-color: transparent !important;
+  color: #4df0ab !important;
+}
+
+.registro-back-button:hover {
+  background-color: rgba(77, 240, 171, 0.1) !important;
+}
+
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .left-panel {
+    flex: 1;
+    height: 100vh;
+    padding: 20px 15px;
+    padding-bottom: 320px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 80px;
+  }
+
+  .overlay-content {
+    max-width: 70%;
+    text-align: left;
+    margin-left: 20px;
+  }
+
+  .overlay-content h1 {
+    font-size: 2.2rem;
+    color: white;
+  }
+
+  .overlay-content p {
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  .right-panel {
+    flex: none;
+    padding: 20px 15px;
+    background-color: transparent;
+    justify-content: flex-end;
+    padding-bottom: 60px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    z-index: 3;
+  }
+
+  .right-panel h2 {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 0;
+    right: 0;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    z-index: 4;
+    margin-bottom: 0;
+    padding: 10px 20px;
+  }
+
+  .top-header {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-panel {
+    height: 100vh;
+    padding: 15px 10px;
+    flex: 1;
+    padding-bottom: 340px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 50px;
+  }
+
+  .overlay-content {
+    max-width: 75%;
+    text-align: left;
+    margin-left: 15px;
+  }
+
+  .overlay-content h1 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    color: white;
+  }
+
+  .overlay-content p {
+    font-size: 1.1rem;
+    color: white;
+  }
+
+  .right-panel {
+    padding: 15px 20px;
+    padding-bottom: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    z-index: 3;
+    background-color: transparent;
+  }
+
+  .right-panel h2 {
+    display: block;
+    position: fixed;
+    top: 5px;
+    left: 0;
+    right: 0;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    z-index: 4;
+    margin-bottom: 0;
+    padding: 10px 20px;
+  }
+}
