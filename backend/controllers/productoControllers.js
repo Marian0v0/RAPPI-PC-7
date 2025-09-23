@@ -1,6 +1,6 @@
 // controllers/productoController.js
-const productoModel = require('../models/productoModels');
 
+const productoModel = require('../models/productoModels');
 //Obtener todos los productos
 async function obtenerProductos(req, res) {
     try {
@@ -27,9 +27,30 @@ async function obtenerProductoPorId(req, res) {
     }
 }
 
+  getProductoByComercio: async (req, res) => {
+    try {
+      const { id_producto } = req.params
+      const result = await productoModel.getByComercio(id_producto)
+      res.json({ success: true, data: result })
+    } catch (error) {
+      res.status(500).json({ success: false, error: error.message })
+    }
+  },
+
+  getProductoByRestaurante: async (req, res) => {
+    try {
+      const { id_producto } = req.params
+      const result = await productoModel.getByRestaurante(id_producto)
+      res.json({ success: true, data: result })
+    } catch (error) {
+      res.status(500).json({ success: false, error: error.message })
+    }
+  },
+
 //Crear producto
 async function crearProducto(req, res) {
     const { detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio } = req.body;
+
     try {
         const nuevoProducto = await productoModel.crearProducto({
             id_producto,
