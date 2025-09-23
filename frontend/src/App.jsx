@@ -43,7 +43,7 @@ const router = createBrowserRouter([
   {
     path: "/restaurantes/:nombreRestaurante",
     element: <VRestaurante/>,
-  }
+  },
   {
     path: "/perfil",
     element: <VistaCuenta />,
