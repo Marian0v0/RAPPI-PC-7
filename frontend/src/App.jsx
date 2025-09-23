@@ -42,6 +42,10 @@ const router = createBrowserRouter([
   {
     path: "/restaurantes/:nombreRestaurante",
     element: <VRestaurante/>,
+  },
+  {
+    path: "/comercios/:nombreComercio",
+    element: <VRestaurante/>,
   }
 ]);
 

@@ -74,6 +74,21 @@ const ComercioController = {
     }
   },
 
+   async getByMarca(req, res) {
+    try {
+      const { nombre_marca } = req.params;
+      const comercio = await Comercio.findByMarca(nombre_marca);
+      
+      if (!comercio) {
+        return res.status(404).json({ error: 'Comercio no encontrado' });
+      }
+      
+      res.status(200).json(comercio);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
   // Actualizar un comercio
   async update(req, res) {
     try {

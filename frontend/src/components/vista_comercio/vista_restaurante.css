@@ -1,0 +1,470 @@
+/* Restaurante.css */
+.restaurante-container {
+  min-height: 100vh;
+  background-color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header principal - 15% width en pantallas grandes */
+.restaurante-header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 15%;
+  height: 100vh;
+  background: linear-gradient(135deg, #26e287 0%, #29d884 50%, #2ccb7e 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.header-content {
+  text-align: center;
+  padding: 2rem;
+  width: 100%;
+}
+
+/* Pequeño encabezado arriba del nombre */
+.restaurante-encabezado {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+  position: relative;
+}
+
+.restaurante-encabezado::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.restaurante-nombre {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  word-wrap: break-word;
+}
+
+.restaurante-direccion {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  opacity: 0.95;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.restaurante-pais {
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.restaurante-tipo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin-top: 1.5rem;
+  opacity: 0.9;
+}
+
+/* Contenido principal (se desplaza a la derecha del header) */
+.restaurante-content {
+  margin-left: 15%;
+  padding: 3rem;
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+
+/* Estilos para pantallas ≤ 1024px - Se convierte en cabecera horizontal */
+@media (max-width: 1024px) {
+  .restaurante-header {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    padding: 1.5rem 0;
+  }
+
+  .header-content {
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .restaurante-encabezado {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .restaurante-nombre {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .restaurante-tipo {
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .restaurante-content {
+    margin-left: 0;
+    padding: 2rem 1.5rem;
+  }
+}
+
+/* Estilos para pantallas muy pequeñas */
+@media (max-width: 768px) {
+  .restaurante-header {
+    min-height: 180px;
+    padding: 1rem 0;
+  }
+
+  .header-content {
+    padding: 1rem;
+  }
+
+  .restaurante-nombre {
+    font-size: 1.5rem;
+  }
+
+  .restaurante-encabezado {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+
+  .restaurante-direccion {
+    font-size: 0.9rem;
+  }
+
+  .restaurante-tipo {
+    font-size: 0.9rem;
+  }
+
+  .restaurante-content {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Efectos hover solo en desktop */
+@media (min-width: 1025px) {
+  .restaurante-header:hover {
+    width: 18%;
+    transition: width 0.3s ease;
+  }
+
+  .restaurante-header:hover .header-content {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+  }
+}
+
+/* Loading y estados de error */
+.loading-container, .error-container, .not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #fc674e 0%, #ff572d 50%, #f14239 100%);
+  color: white;
+}
+
+.loading-spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error-container h2, .not-found-container h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.back-button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Scroll personalizado */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #fc674e 0%, #ff572d 50%, #f14239 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #f14239 0%, #ff572d 50%, #fc674e 100%);
+}
+
+/* === SECCIÓN DE PRODUCTOS === */
+
+.productos-section {
+  margin-left: 15%;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #fafafa;
+}
+
+.productos-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.productos-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.productos-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(135deg, #fc674e 0%, #ff572d 50%, #f14239 100%);
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+/* === CARDS DE PRODUCTOS === */
+
+.producto-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.producto-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.producto-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.producto-card:hover .producto-image {
+  transform: scale(1.05);
+}
+
+.producto-info {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.producto-nombre {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.producto-precio {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2c5530;
+  margin-top: auto;
+}
+
+.producto-actions {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.agregar-carrito-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #fc674e 0%, #ff572d 50%, #f14239 100%);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.agregar-carrito-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(252, 103, 78, 0.3);
+}
+
+.agregar-carrito-btn:active {
+  transform: translateY(0);
+}
+
+/* === ESTADO SIN PRODUCTOS === */
+
+.no-products {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.no-products p {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0;
+}
+
+/* === RESPONSIVE === */
+
+@media (max-width: 1024px) {
+  .productos-section {
+    margin-left: 0;
+    padding: 1.5rem;
+  }
+  
+  .productos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .productos-section {
+    padding: 1rem;
+  }
+  
+  .productos-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .productos-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .producto-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .productos-section {
+    padding: 0.5rem;
+  }
+  
+  .producto-info {
+    padding: 1rem;
+  }
+  
+  .producto-actions {
+    padding: 0 1rem 1rem;
+  }
+  
+  .producto-nombre {
+    font-size: 1.1rem;
+  }
+  
+  .producto-precio {
+    font-size: 1.2rem;
+  }
+}
+
+/* === ANIMACIONES === */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.producto-card {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.producto-card:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.producto-card:nth-child(even) {
+  animation-delay: 0.2s;
+}
