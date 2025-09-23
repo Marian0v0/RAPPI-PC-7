@@ -6,7 +6,7 @@
  * @module producto
  */
 
-const supabase = require('../supabaseClient')
+const supabase = require('../utils/database')
 
 const Producto = {
   // obtener todos los productos
@@ -39,9 +39,29 @@ const Producto = {
   getById: async (id_producto) => {
     const { data, error } = await supabase
       .from('producto')
-      .select('*')
+      .select()
       .eq('id_producto', id_producto)
       .single()
+
+    if (error) throw error
+    return data
+  },
+
+  getByComercio: async (id_producto) => {
+    const { data, error } = await supabase
+      .from('producto')
+      .select()
+      .eq('id_comercio', id_producto)
+
+    if (error) throw error
+    return data
+  },
+
+  getByRestaurante: async (id_producto) => {
+    const { data, error } = await supabase
+      .from('producto')
+      .select()
+      .eq('id_restaurante', id_producto)
 
     if (error) throw error
     return data

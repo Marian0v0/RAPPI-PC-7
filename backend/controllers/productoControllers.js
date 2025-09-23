@@ -1,5 +1,5 @@
 // controllers/productoController.js
-const producto = require('../models/productoModel')
+const producto = require('../models/productoModels');
 
 const productoController = {
 
@@ -18,6 +18,26 @@ const productoController = {
     try {
       const { id_producto } = req.params
       const result = await producto.getById(id_producto)
+      res.json({ success: true, data: result })
+    } catch (error) {
+      res.status(500).json({ success: false, error: error.message })
+    }
+  },
+
+  getProductoByComercio: async (req, res) => {
+    try {
+      const { id_producto } = req.params
+      const result = await producto.getByComercio(id_producto)
+      res.json({ success: true, data: result })
+    } catch (error) {
+      res.status(500).json({ success: false, error: error.message })
+    }
+  },
+
+  getProductoByRestaurante: async (req, res) => {
+    try {
+      const { id_producto } = req.params
+      const result = await producto.getByRestaurante(id_producto)
       res.json({ success: true, data: result })
     } catch (error) {
       res.status(500).json({ success: false, error: error.message })
