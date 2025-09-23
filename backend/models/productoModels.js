@@ -6,7 +6,6 @@
  * @author isabbb
  */
 
-
 const supabase = require('../utils/database');
 
 //Obtener todos los productos
@@ -25,10 +24,10 @@ async function obtenerProductos() {
 // Obtener un producto por ID
 async function obtenerProductoPorId(id_producto) {
     const { data, error } = await supabase
-        .from('producto')
-        .select('*')
-        .eq('id_producto', id_producto)
-        .single();
+      .from('producto')
+      .select()
+      .eq('id_producto', id_producto)
+      .single()
 
     if (error) {
         console.error("❌ Error en obtenerProductoPorId:", error);
@@ -37,8 +36,31 @@ async function obtenerProductoPorId(id_producto) {
     return data;
 }
 
+
+  async function getByComercio (id_producto) {
+    const { data, error } = await supabase
+      .from('producto')
+      .select()
+      .eq('id_comercio', id_producto)
+
+    if (error) throw error
+    return data
+  }
+
+ async function getByRestaurante(id_producto) {
+    const { data, error } = await supabase
+      .from('producto')
+      .select()
+      .eq('id_restaurante', id_producto)
+
+    if (error) throw error
+    return data
+  }
+
+
 // Crear un producto
 async function crearProducto({ detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }) {
+
     const { data, error } = await supabase
         .from('producto')
         .insert([{ detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }])
@@ -87,6 +109,8 @@ async function eliminarProducto(id_producto) {
 module.exports = {
     obtenerProductos,
     obtenerProductoPorId,
+    getByComercio,
+    getByRestaurante,
     crearProducto,
     actualizarProducto,
     eliminarProducto,

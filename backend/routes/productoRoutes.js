@@ -6,6 +6,7 @@
  */
 
 // routes/productoRoutes.js
+
 const express = require('express');
 const router = express.Router();
 const productoController = require('../controllers/productoControllers');
@@ -16,7 +17,13 @@ const productoController = require('../controllers/productoControllers');
 router.get('/', productoController.obtenerProductos);
 
 // Obtener un producto por ID
-router.get('/:id', productoController.obtenerProductoPorId);
+
+router.get('/id/:id_producto', productoController.obtenerProductoPorId)
+
+router.get('/restaurante/:id_producto', productoController.getProductoByRestaurante)
+
+router.get('/comercio/:id_producto', productoController.getProductoByComercio)
+
 
 // Crear un nuevo producto
 router.post('/', productoController.crearProducto);

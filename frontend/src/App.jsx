@@ -1,5 +1,8 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+
+import VRestaurante from "./components/vista_restaurante/vista_restaurante";
 import LoginPage from "./pages/Login/LoginPage";
 import RepartidorLogin from "./pages/RepartidorLogin/RepartidorLogin";
 import ClienteLogin from "./pages/ClienteLogin/ClienteLogin";
@@ -38,6 +41,10 @@ const router = createBrowserRouter([
     element: <ClienteLogin/>,
   },
   {
+    path: "/restaurantes/:nombreRestaurante",
+    element: <VRestaurante/>,
+  }
+  {
     path: "/perfil",
     element: <VistaCuenta />,
   },
@@ -46,9 +53,13 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <React.Fragment>
-      <RouterProvider router={router} />
-    </React.Fragment>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="login"/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/restaurantes/:nombreRestaurante" element={<VRestaurante/>} />
+      </Routes>
+    </Router>
   );
 }
 
