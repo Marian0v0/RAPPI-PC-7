@@ -1,3 +1,8 @@
+/**
+ * Vista restaurante jsx component
+ * @author German Marcillo
+ */
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './vista_restaurante.css';
@@ -27,7 +32,6 @@ const Restaurante = () => {
         const data = await response.json();
         setRestaurante(data[0]);
         
-        // Si se cargó el restaurante, hacer fetch de los productos
         if (data[0] && data[0].id_restaurante) {
           await fetchProductos(data[0].id_restaurante);
         }
@@ -68,9 +72,9 @@ const Restaurante = () => {
   }, [nombreRestaurante]);
 
   const handleProductClick = (producto) => {
-    // Redirección temporal - luego se implementará la funcionalidad completa
+    
     console.log('Producto clickeado:', producto);
-    // Aquí irá la navegación al componente de detalle del producto
+    
   };
 
   if (loading) {
@@ -124,7 +128,6 @@ const Restaurante = () => {
           </div>
         </div>
 
-        {/* Sección de productos */}
         <div className="productos-section">
           <div className="productos-container">
             <h2 className="productos-title">Productos</h2>
@@ -163,7 +166,7 @@ const Restaurante = () => {
                       <button 
                         className="agregar-carrito-btn"
                         onClick={(e) => {
-                          e.stopPropagation(); // Evitar que se active el click de la card
+                          e.stopPropagation(); 
                           console.log('Agregar al carrito:', producto);
                         }}
                       >
