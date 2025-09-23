@@ -1,0 +1,83 @@
+.registro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 20px;
+}
+
+.registro-form .form-group input {
+  background-color: white !important;
+  color: #333 !important;
+  border: 2px solid #e0e0e0 !important;
+}
+
+.registro-form .form-group input::placeholder {
+  color: #999 !important;
+}
+
+.registro-submit {
+  background-color: #4df0ab;
+  color: white;
+}
+
+.registro-submit:hover {
+  background-color: #3dd89a;
+}
+
+.repartidor-registro-back-button {
+  border: 2px solid #4df0ab !important;
+  background-color: transparent !important;
+  color: #4df0ab !important;
+}
+
+.repartidor-registro-back-button:hover {
+  background-color: rgba(77, 240, 171, 0.1) !important;
+}
+
+@media (max-width: 768px) {
+  .overlay-content h1 {
+    color: white;
+  }
+}
+
+@media (max-width: 480px) {
+  .right-panel h2 {
+    color: white;
+  }
+}@media (max-width: 768px) {
+  .left-panel {
+    height: 100vh;
+    padding-bottom: 380px;
+  }
+
+  .overlay-content p {
+    color: white;
+  }
+
+  .right-panel {
+    padding-bottom: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-panel {
+    height: 100vh;
+    padding-bottom: 420px;
+  }
+
+  .right-panel {
+    padding: 15px 20px;
+    padding-bottom: 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    z-index: 3;
+    background-color: transparent;
+    overflow-y: auto;
+    max-height: 75vh;
+  }
+}
