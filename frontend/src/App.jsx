@@ -6,6 +6,7 @@ import ClienteLogin from "./pages/ClienteLogin/ClienteLogin";
 import RegistroPage from "./pages/Registro/RegistroPage";
 import RegistroCliente from "./pages/RegistroCliente/RegistroCliente";
 import RegistroRepartidor from "./pages/RegistroRepartidor/RegistroRepartidor";
+import VistaCuenta from "./pages/perfil/VistaCuenta";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
     path: "/cliente/login",
     element: <ClienteLogin/>,
   },
+  {
+    path: "/perfil",
+    element: <VistaCuenta />,
+  },
+
 ]);
 
 function App() {

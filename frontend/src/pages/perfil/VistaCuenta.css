@@ -1,0 +1,11 @@
+.vista-cuenta {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+  }
+  
+  .vista-cuenta h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
