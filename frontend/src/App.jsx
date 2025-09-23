@@ -10,10 +10,6 @@ import RegistroRepartidor from "./pages/RegistroRepartidor/RegistroRepartidor";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/login"/>
-  },
-  {
-    path: "/login",
     element: <LoginPage/>,
   },
   {
