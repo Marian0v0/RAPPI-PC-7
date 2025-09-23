@@ -1,91 +1,93 @@
-// models/productoModel.js
 
 /**
- * Este módulo maneja la funcionalidad para la gestion de "producto".
+ * Este módulo maneja la funcionalidad de models para "productos".
  * 
  * @module producto
+ * @author isabbb
  */
 
-const supabase = require('../supabaseClient')
 
-const Producto = {
-  // obtener todos los productos
-  all: async () => {
+const supabase = require('../utils/database');
+
+//Obtener todos los productos
+async function obtenerProductos() {
     const { data, error } = await supabase
-      .from('producto')
-      .select(`
-        id_producto,
-        detalles_producto,
-        precio_producto,
-        fotografia_producto,
-        restaurante: id_restaurante (
-          id_restaurante,
-          nombre_restaurante,
-          tipo_comida,
-          direccion_restaurante
-        ),
-        comercio: id_comercio (
-          id_comercio,
-          nombre_marca,
-          tipo_comercio
-        )
-      `)
+        .from('producto')
+        .select('*');
 
-    if (error) throw error
-    return data
-  },
-
-  // obtener un producto por id
-  getById: async (id_producto) => {
-    const { data, error } = await supabase
-      .from('producto')
-      .select('*')
-      .eq('id_producto', id_producto)
-      .single()
-
-    if (error) throw error
-    return data
-  },
-
-  // crear un producto
-  create: async ({ detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }) => {
-    const { data, error } = await supabase
-      .from('producto')
-      .insert([
-        { detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }
-      ])
-      .select()
-      .single()
-
-    if (error) throw error
-    return data
-  },
-
-  // actualizar un producto
-  update: async (id_producto, { detalles_producto, precio_producto, fotografia_producto }) => {
-    const { data, error } = await supabase
-      .from('producto')
-      .update({ detalles_producto, precio_producto, fotografia_producto })
-      .eq('id_producto', id_producto)
-      .select()
-      .single()
-
-    if (error) throw error
-    return data
-  },
-
-  // eliminar un producto
-  delete: async (id_producto) => {
-    const { data, error } = await supabase
-      .from('producto')
-      .delete()
-      .eq('id_producto', id_producto)
-      .select()
-      .single()
-
-    if (error) throw error
-    return data
-  }
+    if (error) {
+        console.error("❌ Error en obtenerProductos:", error);
+        throw error;
+    }
+    return data;
 }
 
-module.exports = Producto
+// Obtener un producto por ID
+async function obtenerProductoPorId(id_producto) {
+    const { data, error } = await supabase
+        .from('producto')
+        .select('*')
+        .eq('id_producto', id_producto)
+        .single();
+
+    if (error) {
+        console.error("❌ Error en obtenerProductoPorId:", error);
+        throw error;
+    }
+    return data;
+}
+
+// Crear un producto
+async function crearProducto({ detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }) {
+    const { data, error } = await supabase
+        .from('producto')
+        .insert([{ detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }])
+        .select()
+        .single();
+
+    if (error) {
+        console.error("❌ Error en crearProducto:", error);
+        throw error;
+    }
+    return data;
+}
+
+// Actualizar un producto
+async function actualizarProducto(id_producto, { detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio }) {
+    const { data, error } = await supabase
+        .from('producto')
+        .update({ detalles_producto, precio_producto, fotografia_producto, id_restaurante, id_comercio })
+        .eq('id_producto', id_producto)
+        .select()
+        .single();
+
+    if (error) {
+        console.error("❌ Error en actualizarProducto:", error);
+        throw error;
+    }
+    return data;
+}
+
+//Eliminar un producto
+async function eliminarProducto(id_producto) {
+    const { data, error } = await supabase
+        .from('producto')
+        .delete()
+        .eq('id_producto', id_producto)
+        .select()
+        .single();
+
+    if (error) {
+        console.error("❌ Error en eliminarProducto:", error);
+        throw error;
+    }
+    return data;
+}
+
+module.exports = {
+    obtenerProductos,
+    obtenerProductoPorId,
+    crearProducto,
+    actualizarProducto,
+    eliminarProducto,
+};
