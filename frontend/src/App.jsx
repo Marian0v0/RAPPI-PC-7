@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import VRestaurante from "./components/vista_restaurante/vista_restaurante";
@@ -20,9 +21,13 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <React.Fragment>
-      <RouterProvider router={router} />
-    </React.Fragment>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="login"/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/restaurantes/:nombreRestaurante" element={<VRestaurante/>} />
+      </Routes>
+    </Router>
   );
 }
 
