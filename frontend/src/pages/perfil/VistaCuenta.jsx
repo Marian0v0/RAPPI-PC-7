@@ -1,4 +1,4 @@
-import Perfil from "../../components/perfil/Perfil.jsx";
+import Perfil from "../../components/perfil/perfil";
 
 import "./VistaCuenta.css";
 
@@ -12,5 +12,5 @@ export default function VistaCuenta() {
       <Perfil tipo="restaurante" id={2} />
       <Perfil tipo="comercio" id={3} />
     </div>
-  );
+  );    
 }
