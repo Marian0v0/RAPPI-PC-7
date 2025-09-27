@@ -35,13 +35,12 @@ const Comercio = {
     return data;
   },
 
-  async findByMarca(id) {
+  async findByMarca(marca) {
     const { data, error } = await supabase
       .from('comercio')
-      .select('*')
-      .eq('nombre_marca', id)
-      .single();
-    
+      .select()
+      .eq('nombre_marca', marca);
+      
     if (error) throw error;
     return data;
   },

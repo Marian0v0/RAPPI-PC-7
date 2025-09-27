@@ -79,8 +79,8 @@ const Comercio = () => {
 
   if (loading) {
     return (
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
+      <div className="loading-vc-container">
+        <div className="loading-vc-spinner"></div>
         <p>Cargando información del comercio...</p>
       </div>
     );
@@ -101,7 +101,7 @@ const Comercio = () => {
 
   if (!comercio) {
     return (
-      <div className="not-found-container">
+      <div className="not-found-vc-container">
         <h2>Comercio no encontrado</h2>
         <p>No se encontró información para el comercio solicitado.</p>
         <button onClick={() => window.history.back()} className="back-button">
@@ -127,41 +127,41 @@ const Comercio = () => {
           </div>
         </div>
 
-        <div className="productos-section">
-          <div className="productos-container">
-            <h2 className="productos-title">Productos</h2>
+        <div className="productos-vc-section">
+          <div className="productos-vc-container">
+            <h2 className="productos-vc-title">Productos</h2>
             
             {productos.length === 0 ? (
               <div className="no-products">
                 <p>No hay productos disponibles en este momento.</p>
               </div>
             ) : (
-              <div className="productos-grid">
+              <div className="productos-vc-grid">
                 {productos.map((producto) => (
                   <div 
                     key={producto.id_producto} 
-                    className="producto-card"
+                    className="producto-vc-card"
                     onClick={() => handleProductClick(producto)}
                   >
-                    <div className="producto-image-container">
+                    <div className="producto-vc-image-container">
                       <img 
                         src={producto.fotografia_producto} 
                         alt={producto.detalles_producto}
-                        className="producto-image"
+                        className="producto-vc-image"
                         onError={(e) => {
                           e.target.src = 'https://via.placeholder.com/300x200/ffffff/666666?text=Imagen+No+Disponible';
                         }}
                       />
                     </div>
                     
-                    <div className="producto-info">
-                      <h3 className="producto-nombre">{producto.detalles_producto}</h3>
-                      <p className="producto-precio">
+                    <div className="producto-vc-info">
+                      <h3 className="producto-vc-nombre">{producto.detalles_producto}</h3>
+                      <p className="producto-vc-precio">
                         ${producto.precio_producto.toLocaleString('es-CO')}
                       </p>
                     </div>
                     
-                    <div className="producto-actions">
+                    <div className="producto-vc-actions">
                       <button 
                         className="agregar-carrito-btn"
                         onClick={(e) => {
