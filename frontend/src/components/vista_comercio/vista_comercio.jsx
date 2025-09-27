@@ -1,21 +1,21 @@
 /**
- * Vista restaurante jsx component
+ * Vista comercio jsx component
  * @author German Marcillo
  */
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import './vista_restaurante.css';
+import './vista_comercio.css';
 
 const Comercio = () => {
-  const { nombreComercio } = useParams();
-  const [restaurante, setRestaurante] = useState(null);
+  const {nombreComercio } = useParams();
+  const [comercio, setComercio] = useState(null);
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchRestaurante = async () => {
+    const fetchComercio = async () => {
       try {
         setLoading(true);
         setError(null);
@@ -24,21 +24,21 @@ const Comercio = () => {
         
         if (!response.ok) {
           if (response.status === 404) {
-            throw new Error(`Restaurante "${nombreRestaurante}" no encontrado`);
+            throw new Error(`Comercio "${nombreComercio}" no encontrado`);
           }
           throw new Error(`Error ${response.status}: ${response.statusText}`);
         }
         
         const data = await response.json();
-        setRestaurante(data[0]);
+        setComercio(data[0]);
         
-        if (data[0] && data[0].id_restaurante) {
+        if (data[0] && data[0].id_comercio) {
           await fetchProductos(data[0].id_comercio);
         }
         
       } catch (err) {
         setError(err.message);
-        console.error('Error fetching restaurante:', err);
+        console.error('Error fetching comercio:', err);
         setLoading(false);
       }
     };
@@ -63,13 +63,13 @@ const Comercio = () => {
       }
     };
 
-    if (nombreRestaurante) {
-      fetchRestaurante();
+    if (nombreComercio) {
+      fetchComercio();
     } else {
-      setError('No se proporcionó nombre de restaurante');
+      setError('No se proporcionó nombre de comercio');
       setLoading(false);
     }
-  }, [nombreRestaurante]);
+  }, [nombreComercio]);
 
   const handleProductClick = (producto) => {
     
@@ -81,7 +81,7 @@ const Comercio = () => {
     return (
       <div className="loading-container">
         <div className="loading-spinner"></div>
-        <p>Cargando información del restaurante...</p>
+        <p>Cargando información del comercio...</p>
       </div>
     );
   }
@@ -91,7 +91,7 @@ const Comercio = () => {
       <div className="error-container">
         <h2>Error</h2>
         <p>{error}</p>
-        <p>Nombre buscado: "{nombreRestaurante}"</p>
+        <p>Nombre buscado: "{nombreComercio}"</p>
         <button onClick={() => window.history.back()} className="back-button">
           Volver atrás
         </button>
@@ -99,11 +99,11 @@ const Comercio = () => {
     );
   }
 
-  if (!restaurante) {
+  if (!comercio) {
     return (
       <div className="not-found-container">
-        <h2>Restaurante no encontrado</h2>
-        <p>No se encontró información para el restaurante solicitado.</p>
+        <h2>Comercio no encontrado</h2>
+        <p>No se encontró información para el comercio solicitado.</p>
         <button onClick={() => window.history.back()} className="back-button">
           Volver atrás
         </button>
@@ -113,17 +113,16 @@ const Comercio = () => {
 
   return (
     <>
-      <title>{restaurante.nombre_restaurante}</title>
+      <title>{comercio.nombre_marca}</title>
 
-      <div className="restaurante-container">
-        <div className="restaurante-header">
+      <div className="comercio-container">
+        <div className="comercio-header">
           <div className="header-content">
-            <div className="restaurante-encabezado">restaurante {restaurante.tipo_comida}</div>
-            <h1 className="restaurante-nombre">{restaurante.nombre_restaurante}</h1>
-            <p className="restaurante-direccion">{restaurante.direccion_restaurante}</p>
-            <p className="restaurante-pais">Colombia</p>
-            <p className="restaurante-tipo">
-              {restaurante.tipo_comida} - {restaurante.nombre_restaurante}
+            <div className="comercio-encabezado">Comercio {comercio.tipo_comercio}</div>
+            <h1 className="comercio-nombre">{comercio.nombre_marca}</h1>
+            <p className="comercio-pais">Colombia</p>
+            <p className="comercio-tipo">
+              {comercio.tipo_comercio} - {comercio.nombre_marca}
             </p>
           </div>
         </div>
