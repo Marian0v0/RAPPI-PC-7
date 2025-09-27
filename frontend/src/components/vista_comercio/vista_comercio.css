@@ -1,12 +1,12 @@
-/* Restaurante.css */
-.restaurante-container {
+/* comercio.css */
+.comercio-container {
   min-height: 100vh;
   background-color: #ffffff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Header principal - 15% width en pantallas grandes */
-.restaurante-header {
+.comercio-header {
   position: fixed;
   left: 0;
   top: 0;
@@ -29,7 +29,7 @@
 }
 
 /* Pequeño encabezado arriba del nombre */
-.restaurante-encabezado {
+.comercio-encabezado {
   font-size: 0.9rem;
   font-weight: 600;
   letter-spacing: 2px;
@@ -39,7 +39,7 @@
   position: relative;
 }
 
-.restaurante-encabezado::after {
+.comercio-encabezado::after {
   content: '';
   position: absolute;
   bottom: -0.5rem;
@@ -50,7 +50,7 @@
   background: rgba(255, 255, 255, 0.5);
 }
 
-.restaurante-nombre {
+.comercio-nombre {
   font-size: 2.2rem;
   font-weight: 700;
   line-height: 1.2;
@@ -59,7 +59,7 @@
   word-wrap: break-word;
 }
 
-.restaurante-direccion {
+.comercio-direccion {
   font-size: 1rem;
   margin-bottom: 0.8rem;
   opacity: 0.95;
@@ -67,14 +67,14 @@
   font-weight: 400;
 }
 
-.restaurante-pais {
+.comercio-pais {
   font-size: 0.9rem;
   margin-bottom: 1.2rem;
   opacity: 0.8;
   font-style: italic;
 }
 
-.restaurante-tipo {
+.comercio-tipo {
   font-size: 1.1rem;
   font-weight: 600;
   padding-top: 1.2rem;
@@ -84,7 +84,7 @@
 }
 
 /* Contenido principal (se desplaza a la derecha del header) */
-.restaurante-content {
+.comercio-content {
   margin-left: 15%;
   padding: 3rem;
   background-color: #fafafa;
@@ -93,7 +93,7 @@
 
 /* Estilos para pantallas ≤ 1024px - Se convierte en cabecera horizontal */
 @media (max-width: 1024px) {
-  .restaurante-header {
+  .comercio-header {
     position: relative;
     width: 100%;
     height: auto;
@@ -107,23 +107,23 @@
     margin: 0 auto;
   }
 
-  .restaurante-encabezado {
+  .comercio-encabezado {
     font-size: 0.8rem;
     margin-bottom: 1rem;
   }
 
-  .restaurante-nombre {
+  .comercio-nombre {
     font-size: 1.8rem;
     margin-bottom: 1rem;
   }
 
-  .restaurante-tipo {
+  .comercio-tipo {
     font-size: 1rem;
     margin-top: 1rem;
     padding-top: 1rem;
   }
 
-  .restaurante-content {
+  .comercio-content {
     margin-left: 0;
     padding: 2rem 1.5rem;
   }
@@ -131,7 +131,7 @@
 
 /* Estilos para pantallas muy pequeñas */
 @media (max-width: 768px) {
-  .restaurante-header {
+  .comercio-header {
     min-height: 180px;
     padding: 1rem 0;
   }
@@ -140,36 +140,36 @@
     padding: 1rem;
   }
 
-  .restaurante-nombre {
+  .comercio-nombre {
     font-size: 1.5rem;
   }
 
-  .restaurante-encabezado {
+  .comercio-encabezado {
     font-size: 0.75rem;
     letter-spacing: 1px;
   }
 
-  .restaurante-direccion {
+  .comercio-direccion {
     font-size: 0.9rem;
   }
 
-  .restaurante-tipo {
+  .comercio-tipo {
     font-size: 0.9rem;
   }
 
-  .restaurante-content {
+  .comercio-content {
     padding: 1.5rem 1rem;
   }
 }
 
 /* Efectos hover solo en desktop */
 @media (min-width: 1025px) {
-  .restaurante-header:hover {
+  .comercio-header:hover {
     width: 18%;
     transition: width 0.3s ease;
   }
 
-  .restaurante-header:hover .header-content {
+  .comercio-header:hover .header-content {
     transform: scale(1.02);
     transition: transform 0.3s ease;
   }
