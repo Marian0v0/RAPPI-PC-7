@@ -24,6 +24,19 @@ async function rechazarPedido(req, res) {
   }
 }
 
+// Ver pedidos pendientes
+export async function listarPedidosPendientes(req, res) {
+  try {
+    const pedidos = await obtenerPedidosPendientes();
+    res.status(200).json(pedidos);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error al obtener los pedidos pendientes",
+      error: error.message
+    });
+  }
+}
+
 // Ver pedidos asignados
 async function obtenerPedidos(req, res) {
   try {
