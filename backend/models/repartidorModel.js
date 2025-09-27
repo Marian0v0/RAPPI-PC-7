@@ -147,4 +147,5 @@ module.exports = {
   guardarCalificacion,
   obtenerCalificaciones,
   actualizarDisponibilidad,
+  obtenerPedidosPendientes,
 };

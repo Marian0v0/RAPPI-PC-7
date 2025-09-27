@@ -25,7 +25,7 @@ async function rechazarPedido(req, res) {
 }
 
 // Ver pedidos pendientes
-export async function listarPedidosPendientes(req, res) {
+async function obtenerPedidosPendientes(req, res) {
   try {
     const pedidos = await obtenerPedidosPendientes();
     res.status(200).json(pedidos);
@@ -113,4 +113,5 @@ module.exports = {
   guardarCalificacion,
   obtenerCalificaciones,
   actualizarDisponibilidad,
+  obtenerPedidosPendientes,
 };

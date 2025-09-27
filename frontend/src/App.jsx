@@ -9,6 +9,7 @@ import ClienteLogin from "./pages/ClienteLogin/ClienteLogin";
 import RegistroPage from "./pages/Registro/RegistroPage";
 import RegistroCliente from "./pages/RegistroCliente/RegistroCliente";
 import RegistroRepartidor from "./pages/RegistroRepartidor/RegistroRepartidor";
+import RepartidorVistaPedidos from "./pages/RepartidorVistaPedidos/RepartidorVistaPedidos";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "/restaurantes/:nombreRestaurante",
     element: <VRestaurante/>,
+  },
+  {
+    path: "/repartidor/repartidorPedidos",
+    element: <RepartidorVistaPedidos/>,
   }
 ]);
 
