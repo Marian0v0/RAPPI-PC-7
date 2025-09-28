@@ -1,5 +1,5 @@
 /**
- * Pedido Model - Versión Corregida (Sin dependencia de stock)
+ * Pedido Model
  * @module pedidoModel
  * @author Marian:D
  */
