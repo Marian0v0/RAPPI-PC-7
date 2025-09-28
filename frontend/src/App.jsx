@@ -1,14 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
-
-import VRestaurante from "./components/vista_restaurante/vista_restaurante";
 import LoginPage from "./pages/Login/LoginPage";
 import RepartidorLogin from "./pages/RepartidorLogin/RepartidorLogin";
 import ClienteLogin from "./pages/ClienteLogin/ClienteLogin";
 import RegistroPage from "./pages/Registro/RegistroPage";
 import RegistroCliente from "./pages/RegistroCliente/RegistroCliente";
 import RegistroRepartidor from "./pages/RegistroRepartidor/RegistroRepartidor";
+import VistaComecio from "./components/vista_comercio/vista_comercio";
+import VistaRestaurante from "./components/vista_restaurante/vista_restaurante";
+import RepartidorVistaPedidos from "./pages/RepartidorVistaPedidos/RepartidorVistaPedidos";
 import VistaCuenta from "./pages/perfil/VistaCuenta";
 
 const router = createBrowserRouter([
@@ -41,6 +41,17 @@ const router = createBrowserRouter([
     element: <ClienteLogin/>,
   },
   {
+    path:"/comercios/:nombreComercio",
+    element: <VistaComecio/>
+  },
+  {
+    path:"/restaurantes/:nombreRestaurante",
+    element: <VistaRestaurante/>
+  },
+  {
+    path: "/repartidor/repartidorPedidos",
+    element: <RepartidorVistaPedidos/>,
+  }
     path: "/restaurantes/:nombreRestaurante",
     element: <VRestaurante/>,
   },

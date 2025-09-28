@@ -182,6 +182,104 @@ const pedidoController = {
         } catch (error) {
             res.status(500).json({ success: false, error: error.message });
         }
+    },
+
+    cancelarPedido: async (req, res) => {
+        try {
+            const { id_pedido, cargos_adicionales } = req.body;
+            if (!id_pedido) {
+                return res.status(400).json({ success: false, error: 'id_pedido es requerido' });
+            }
+
+            const pedidoExistente = await pedidoModel.getById(id_pedido);
+            if (!pedidoExistente) {
+                return res.status(404).json({ success: false, error: 'Pedido no encontrado' });
+            }
+
+            if (pedidoExistente.estado_pedido === 'En Proceso' || pedidoExistente.estado_pedido === 'Entregado') {
+                return res.status(400).json({ success: false, error: 'No se puede cancelar un pedido que ya está en proceso o entregado' });
+            }
+
+            const pedidoCancelado = await pedidoModel.updateEstado(id_pedido, 'Cancelado');
+            if (cargos_adicionales !== undefined) {
+                await pedidoModel.update(id_pedido, { cargos_adicionales });
+            }res.json({ success: true, message: 'El pedido ha sido cancelado',data: pedidoCancelado});
+
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
+    },
+
+    agregarAlCarrito: async (req, res) => {
+        try {
+            const { id_cliente, productos } = req.body;
+            
+            if (!id_cliente || !productos || productos.length === 0) {
+                return res.status(400).json({ success: false, error: 'id_cliente y productos son requeridos' });
+            }
+
+            for (const producto of productos) {
+                if (!producto.id_producto || !producto.precio_producto) {
+                    return res.status(400).json({ success: false, error: 'Cada producto debe tener id_producto y precio_producto' });
+                }
+            }
+
+            const pedidoData = {
+                pedido: {id_cliente,estado_pedido: 'Pendiente',total_pedido: 0, cargos_adicionales: 0},
+                detalles: productos.map(producto => ({id_producto: producto.id_producto,cantidad: producto.cantidad || 1,precio_unitario: producto.precio_producto}))
+            };
+
+            const nuevoPedido = await pedidoModel.create(pedidoData);
+            const calculadoraPrecios = require('../services/calculadoraPrecios');
+            const costo = await calculadoraPrecios.actualizarTotalPedido(nuevoPedido.id_pedido);
+
+            res.status(201).json({ success: true, message: 'Productos agregados al carrito exitosamente', data: {pedido: nuevoPedido,costo: costo}
+            });
+
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
+    },
+
+    getEstadoPedido: async (req, res) => {
+        try {
+            const { id_pedido } = req.params;
+            const pedido = await pedidoModel.getById(id_pedido);
+            if (!pedido) {
+                return res.status(404).json({ success: false, error: 'Pedido no encontrado' });
+            }
+
+            let tiempoEstimado = null;
+            const ahora = new Date();
+            const fechaPedido = new Date(pedido.fecha_pedido);
+
+            switch (pedido.estado_pedido) {
+                case 'Pendiente':
+                    tiempoEstimado = 'Esperando confirmación del restaurante';
+                    break;
+                case 'Aceptado':
+                    tiempoEstimado = '30-45 minutos';
+                    break;
+                case 'En Proceso':
+                    const tiempoTranscurrido = Math.floor((ahora - fechaPedido) / (1000 * 60)); 
+                    tiempoEstimado = Math.max(0, 45 - tiempoTranscurrido) + ' minutos restantes';
+                    break;
+                case 'Entregado':
+                    tiempoEstimado = 'Pedido entregado';
+                    break;
+                case 'Cancelado':
+                    tiempoEstimado = 'Pedido cancelado';
+                    break;
+                default:
+                    tiempoEstimado = 'Tiempo no disponible';
+            }
+
+            res.json({ success: true, data: {pedido: pedido,estado: pedido.estado_pedido,tiempoEstimado: tiempoEstimado,fechaPedido: pedido.fecha_pedido}
+            });
+
+        } catch (error) {
+            res.status(500).json({ success: false, error: error.message });
+        }
     }
 };
 
