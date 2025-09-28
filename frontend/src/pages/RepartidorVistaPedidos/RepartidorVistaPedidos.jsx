@@ -1,43 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EditarEstadoModal from "../../components/editarEstadoPedido/EditarEstadoModal";
 import "./RepartidorVistaPedidos.css";
 
 const RepartidorVistaPedidos = () => {
   const [filtro, setFiltro] = useState("Pendiente");
-  const [pedidos, setPedidos] = useState([
-    {
-      id: 1,
-      estado: "Pendiente",
-      fecha: "2025-09-26 18:30",
-      restaurante: "Restaurante La Luna",
-      precio: 20000,
-    },
-    {
-      id: 2,
-      estado: "Aceptado",
-      fecha: "2025-09-25 20:15",
-      restaurante: "Pizza Planet",
-      precio: 45000,
-    },
-  ]);
+  const [pedidos, setPedidos] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
 
-  const handleAceptar = (id) => {
-    setPedidos((prev) =>
-      prev.map((p) =>
-        p.id === id ? { ...p, estado: "Aceptado" } : p
-      )
-    );
+  // Cargar pedidos desde la API al montar el componente
+  useEffect(() => {
+    fetch("http://localhost:3000/backend/repartidor/pendientes")
+      .then((res) => res.json())
+      .then((data) => setPedidos(data))
+      .catch((err) => console.error("Error al obtener pedidos:", err));
+  }, []);
+
+  const handleAceptar = async (id) => {
+    try {
+      const res = await fetch("http://localhost:3000/backend/repartidor/pedidos/aceptar", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) throw new Error("Error al aceptar pedido");
+      setPedidos((prev) =>
+        prev.map((p) => (p.id === id ? { ...p, estado: "Aceptado" } : p))
+      );
+    } catch (error) {
+      console.error(error);
+      alert("No se pudo aceptar el pedido");
+    }
   };
 
-  const handleRechazar = (id) => {
+  const handleRechazar = async (id) => {
     if (window.confirm("¿Seguro que quieres rechazar este pedido?")) {
-      setPedidos((prev) =>
-        prev.map((p) =>
-          p.id === id ? { ...p, estado: "Rechazado" } : p
-        )
-      );
+      try {
+        const res = await fetch("http://localhost:3000/backend/repartidor/pedidos/rechazar", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id }),
+        });
+        if (!res.ok) throw new Error("Error al rechazar pedido");
+        setPedidos((prev) =>
+          prev.map((p) => (p.id === id ? { ...p, estado: "Rechazado" } : p))
+        );
+      } catch (error) {
+        console.error(error);
+        alert("No se pudo rechazar el pedido");
+      }
     }
   };
 
@@ -89,23 +100,24 @@ const RepartidorVistaPedidos = () => {
             <div className="precio">${pedido.precio}</div>
             <div className="cardFooter">
               <button
-                className={`boton ${pedido.estado !== "Pendiente" ? "botonDeshabilitado" : ""}`}
+                className={`boton ${
+                  pedido.estado !== "Pendiente" ? "botonDeshabilitado" : ""
+                }`}
                 onClick={() => handleAceptar(pedido.id)}
                 disabled={pedido.estado !== "Pendiente"}
               >
                 ✓ Aceptar
               </button>
               <button
-                className={`boton ${pedido.estado !== "Pendiente" ? "botonDeshabilitado" : ""}`}
+                className={`boton ${
+                  pedido.estado !== "Pendiente" ? "botonDeshabilitado" : ""
+                }`}
                 onClick={() => handleRechazar(pedido.id)}
                 disabled={pedido.estado !== "Pendiente"}
               >
                 ✕ Rechazar
               </button>
-              <button
-                className="boton"
-                onClick={() => handleOpenModal(pedido)}
-              >
+              <button className="boton" onClick={() => handleOpenModal(pedido)}>
                 ✎ Editar
               </button>
             </div>

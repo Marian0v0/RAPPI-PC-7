@@ -39,7 +39,7 @@ async function rechazarPedido(id_pedido, id_repartidor) {
 }
 
 // ✅ Obtener pedidos pendientes
-async function obtenerPedidosPendientes() {
+async function pedidosPendientes() {
   try {
     const { data, error } = await supabase
       .from('pedido')
@@ -65,7 +65,7 @@ async function obtenerPedidos(id_repartidor) {
     if (error) throw error;
     return data;
   } catch (error) {
-    console.error("❌ Error en obtenerPedidos:", error);
+    console.error("❌ Error en obtener Pedidos:", error);
     throw error;
   }
 }
@@ -147,5 +147,5 @@ module.exports = {
   guardarCalificacion,
   obtenerCalificaciones,
   actualizarDisponibilidad,
-  obtenerPedidosPendientes,
+  pedidosPendientes,
 };
