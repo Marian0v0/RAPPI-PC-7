@@ -5,7 +5,7 @@ async function aceptarPedido(id_pedido, id_repartidor) {
   try {
     const { data, error } = await supabase
       .from('pedido')
-      .update({ estado_pedido: 'aceptado', id_repartidor })
+      .update({ estado_pedido: 'Aceptado', id_repartidor })
       .eq('id_pedido', id_pedido)
       .eq('estado_pedido', 'pendiente')
       .select()
@@ -24,7 +24,7 @@ async function rechazarPedido(id_pedido, id_repartidor) {
   try {
     const { data, error } = await supabase
       .from('pedido')
-      .update({ estado_pedido: 'rechazado' })
+      .update({ estado_pedido: 'Rechazado' })
       .eq('id_pedido', id_pedido)
       .eq('id_repartidor', id_repartidor)
       .select()
@@ -39,12 +39,12 @@ async function rechazarPedido(id_pedido, id_repartidor) {
 }
 
 // ✅ Obtener pedidos pendientes
-async function obtenerPedidosPendientes() {
+async function pedidosPendientes() {
   try {
     const { data, error } = await supabase
       .from('pedido')
       .select('*')
-      .eq('estado_pedido', 'pendiente'); // Filtra solo los pedidos pendientes
+      .eq('estado_pedido', 'Pendiente'); // Filtra solo los pedidos pendientes
 
     if (error) throw error;
     return data; 
@@ -65,7 +65,7 @@ async function obtenerPedidos(id_repartidor) {
     if (error) throw error;
     return data;
   } catch (error) {
-    console.error("❌ Error en obtenerPedidos:", error);
+    console.error("❌ Error en obtener Pedidos:", error);
     throw error;
   }
 }
@@ -147,5 +147,5 @@ module.exports = {
   guardarCalificacion,
   obtenerCalificaciones,
   actualizarDisponibilidad,
-  obtenerPedidosPendientes,
+  pedidosPendientes,
 };
