@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './vista_comercio.css';
+import Producto from '../vista_producto/vista_producto';
 
 const Comercio = () => {
   const {nombreComercio } = useParams();
@@ -13,6 +14,8 @@ const Comercio = () => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [modalAbierto, setModalAbierto] = useState(false);
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
   useEffect(() => {
     const fetchComercio = async () => {
@@ -72,9 +75,19 @@ const Comercio = () => {
   }, [nombreComercio]);
 
   const handleProductClick = (producto) => {
-    
-    console.log('Producto clickeado:', producto);
-    
+    setProductoSeleccionado(producto.id_producto);
+    setModalAbierto(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalAbierto(false);
+    setProductoSeleccionado(null);
+  };
+
+  const handleAddToCart = (productoConCantidad) => {
+    // Aquí implementarás la lógica para agregar al carrito
+    console.log('Producto agregado al carrito:', productoConCantidad);
+    // Actualizar estado del carrito aquí
   };
 
   if (loading) {
@@ -163,7 +176,7 @@ const Comercio = () => {
                     
                     <div className="producto-vc-actions">
                       <button 
-                        className="agregar-carrito-btn"
+                        className="agregar-carrito-vc-btn"
                         onClick={(e) => {
                           e.stopPropagation(); 
                           console.log('Agregar al carrito:', producto);
@@ -178,6 +191,7 @@ const Comercio = () => {
             )}
           </div>
         </div>
+        <Producto isOpen={modalAbierto} onClose={handleCloseModal} idProducto={productoSeleccionado} onAddToCart={handleAddToCart}/>
       </div>
     </>
   );

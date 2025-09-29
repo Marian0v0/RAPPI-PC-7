@@ -18,7 +18,7 @@ router.get('/', productoController.obtenerProductos);
 
 // Obtener un producto por ID
 
-router.get('/id/:id_producto', productoController.obtenerProductoPorId)
+router.get('/id/:id', productoController.obtenerProductoPorId)
 
 router.get('/restaurante/:id_producto', productoController.getProductoByRestaurante)
 

@@ -348,7 +348,7 @@
   padding: 0 1.5rem 1.5rem;
 }
 
-.agregar-carrito-btn {
+.agregar-carrito-vc-btn {
   width: 100%;
   background: linear-gradient(135deg, #26e287 0%, #29d884 50%, #2ccb7e 100%);
   color: white;
@@ -361,12 +361,12 @@
   transition: all 0.3s ease;
 }
 
-.agregar-carrito-btn:hover {
+.agregar-carrito-vc-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(78, 252, 101, 0.3);
 }
 
-.agregar-carrito-btn:active {
+.agregar-carrito-vc-btn:active {
   transform: translateY(0);
 }
 
