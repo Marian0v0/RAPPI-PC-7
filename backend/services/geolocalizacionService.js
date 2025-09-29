@@ -115,6 +115,41 @@ const geolocalizacionService = {
             console.error("  Error en obtenerDireccion:", error);
             throw error;
         }
+    },
+
+    trackRepartidor: async (id_repartidor, latitud, longitud) => {
+        try {
+            const { data, error } = await supabase
+                .from('repartidor').update({ latitud_actual: latitud,longitud_actual: longitud,ultima_actualizacion: new Date().toISOString()
+                }).eq('id_repartidor', id_repartidor);
+            return { success: !error, data };
+        } catch (error) {
+            console.error("Error tracking repartidor:", error);
+            throw error;
+        }
+    },
+
+    calcularTiempoLlegada: async (id_repartidor, id_pedido) => {
+        try {
+            const { data: repartidor } = await supabase
+                .from('repartidor').select('latitud_actual, longitud_actual, tipo_vehiculo').eq('id_repartidor', id_repartidor).single();
+            const { data: pedido } = await supabase
+                .from('pedido').select('direccion_entrega').eq('id_pedido', id_pedido).single();
+            const coordsEntrega = await geolocalizacionService.obtenerCoordenadas(pedido.direccion_entrega);
+            const distancia = geolocalizacionService.calcularDistancia(repartidor.latitud_actual, repartidor.longitud_actual,coordsEntrega.latitud, coordsEntrega.longitud);
+            
+            let velocidadPromedio = 30; 
+            if (repartidor.tipo_vehiculo === 'Moto') velocidadPromedio = 35;
+            if (repartidor.tipo_vehiculo === 'Bicicleta') velocidadPromedio = 15;
+            if (repartidor.tipo_vehiculo === 'Carro') velocidadPromedio = 25;
+            
+            const tiempoMinutos = Math.ceil((distancia / velocidadPromedio) * 60);
+            return {distancia: distancia,tiempoEstimado: tiempoMinutos,velocidadPromedio: velocidadPromedio,tipoVehiculo: repartidor.tipo_vehiculo
+            };
+        } catch (error) {
+            console.error("Error calculando tiempo de llegada:", error);
+            throw error;
+        }
     }
 };
 
