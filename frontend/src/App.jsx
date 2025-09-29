@@ -9,7 +9,16 @@ import RegistroRepartidor from "./pages/RegistroRepartidor/RegistroRepartidor";
 import VistaComecio from "./components/vista_comercio/vista_comercio";
 import VistaRestaurante from "./components/vista_restaurante/vista_restaurante";
 import RepartidorVistaPedidos from "./pages/RepartidorVistaPedidos/RepartidorVistaPedidos";
+import AñadirFavoritos from "./pages/Cuenta/añadirFavoritos";
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AñadirFavoritos /> 
+  },
+  {
+    path: "/añadirFavoritos", 
+    element: <AñadirFavoritos/>,
+  },
   {
     path: "/",
     element: <Navigate to="/login"/>
