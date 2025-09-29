@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './vista_restaurante.css';
+import Producto from '../vista_producto/vista_producto';
 
 const Restaurante = () => {
   const { nombreRestaurante } = useParams();
@@ -13,6 +14,8 @@ const Restaurante = () => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [modalAbierto, setModalAbierto] = useState(false);
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
   useEffect(() => {
     const fetchRestaurante = async () => {
@@ -63,6 +66,7 @@ const Restaurante = () => {
       }
     };
 
+
     if (nombreRestaurante) {
       fetchRestaurante();
     } else {
@@ -72,9 +76,19 @@ const Restaurante = () => {
   }, [nombreRestaurante]);
 
   const handleProductClick = (producto) => {
-    
-    console.log('Producto clickeado:', producto);
-    
+    setProductoSeleccionado(producto.id_producto);
+    setModalAbierto(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalAbierto(false);
+    setProductoSeleccionado(null);
+  };
+
+  const handleAddToCart = (productoConCantidad) => {
+    // Aquí implementarás la lógica para agregar al carrito
+    console.log('Producto agregado al carrito:', productoConCantidad);
+    // Actualizar estado del carrito aquí
   };
 
   if (loading) {
@@ -179,6 +193,8 @@ const Restaurante = () => {
             )}
           </div>
         </div>
+        <Producto isOpen={modalAbierto} onClose={handleCloseModal} idProducto={productoSeleccionado} onAddToCart={handleAddToCart}
+        />
       </div>
     </>
   );
