@@ -9,7 +9,6 @@ import RegistroRepartidor from "./pages/RegistroRepartidor/RegistroRepartidor";
 import VistaComecio from "./components/vista_comercio/vista_comercio";
 import VistaRestaurante from "./components/vista_restaurante/vista_restaurante";
 import RepartidorVistaPedidos from "./pages/RepartidorVistaPedidos/RepartidorVistaPedidos";
-import VistaCuenta from "./pages/perfil/VistaCuenta";
 
 const router = createBrowserRouter([
   {
@@ -42,24 +41,20 @@ const router = createBrowserRouter([
   },
   {
     path:"/comercios/:nombreComercio",
-    element: <VistaComecio/>
+    element: <VistaComecio/>,
   },
   {
     path:"/restaurantes/:nombreRestaurante",
-    element: <VistaRestaurante/>
+    element: <VistaRestaurante/>,
   },
   {
     path: "/repartidor/repartidorPedidos",
     element: <RepartidorVistaPedidos/>,
-  }
+  },
+  {
     path: "/restaurantes/:nombreRestaurante",
     element: <VRestaurante/>,
   },
-  {
-    path: "/perfil",
-    element: <VistaCuenta />,
-  },
-
 ]);
 
 function App() {
