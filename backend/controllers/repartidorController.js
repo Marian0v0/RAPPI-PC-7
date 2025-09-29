@@ -27,7 +27,7 @@ async function rechazarPedido(req, res) {
 // Ver pedidos pendientes
 async function obtenerPedidosPendientes(req, res) {
   try {
-    const pedidos = await obtenerPedidosPendientes();
+    const pedidos = await repartidorModel.pedidosPendientes();
     res.status(200).json(pedidos);
   } catch (error) {
     res.status(500).json({
