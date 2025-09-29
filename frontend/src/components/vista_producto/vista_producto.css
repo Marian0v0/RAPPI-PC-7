@@ -1,0 +1,210 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  color: #333;
+  text-align: left;
+  display: block;
+}
+
+.modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.producto-imagen-container {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.producto-imagen {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+.producto-detalles {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.precio-container {
+  text-align: right;
+}
+
+.producto-precio {
+  font-size: 2rem;
+  color: #333;
+  display: block;
+}
+
+.precio-unitario {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  display: block;
+}
+
+.cantidad-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cantidad-label {
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.cantidad-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-end;
+}
+
+.cantidad-btn {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #4df0ab;
+  background: white;
+  color: #4df0ab;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cantidad-btn:hover:not(:disabled) {
+  background-color: #4df0ab;
+  color: white;
+}
+
+.cantidad-btn:disabled {
+  border-color: #ccc;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.cantidad-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  min-width: 30px;
+  text-align: center;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btn-agregar-seguir,
+.btn-agregar-pagar {
+  padding: 16px 24px;
+  border: 2px solid #4df0ab;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btn-agregar-seguir {
+  background: rgba(77, 240, 171, 0.1);
+  color: #4df0ab;
+}
+
+.btn-agregar-seguir:hover {
+  background: rgba(77, 240, 171, 0.2);
+}
+
+.btn-agregar-pagar {
+  background: #4df0ab;
+  color: white;
+}
+
+.btn-agregar-pagar:hover {
+  background: #3dd89a;
+  border-color: #3dd89a;
+}
+
+.modal-loading,
+.modal-error {
+  text-align: center;
+  padding: 40px;
+  color: #333;
+}
+
+.modal-close-btn {
+  margin-top: 16px;
+  padding: 8px 16px;
+  background: #4df0ab;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-body {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .modal-content {
+    padding: 16px;
+  }
+  
+  .producto-detalles {
+    gap: 16px;
+  }
+  
+  .btn-agregar-seguir,
+  .btn-agregar-pagar {
+    padding: 12px 20px;
+  }
+}
