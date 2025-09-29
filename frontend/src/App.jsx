@@ -9,8 +9,13 @@ import RegistroRepartidor from "./pages/RegistroRepartidor/RegistroRepartidor";
 import VistaComecio from "./components/vista_comercio/vista_comercio";
 import VistaRestaurante from "./components/vista_restaurante/vista_restaurante";
 import RepartidorVistaPedidos from "./pages/RepartidorVistaPedidos/RepartidorVistaPedidos";
-import AñadirFavoritos from "./pages/Cuenta/añadirFavoritos";
+import AñadirFavoritos from "./pages/Cuenta/añadirFavoritos/AñadirFavoritos";
+//import SeccionCuenta from "./pages/Cuenta/seccionCuenta";
 const router = createBrowserRouter([
+  //{
+   // path: "/cuenta",
+   // element: <SeccionCuenta/>,
+  //},
   {
     path: "/",
     element: <AñadirFavoritos /> 
