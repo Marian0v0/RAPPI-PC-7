@@ -1,16 +1,16 @@
 /**
- * Vista restaurante jsx component
+ * Vista comercio jsx component
  * @author German Marcillo
  */
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import './vista_restaurante.css';
+import './vista_comercio.css';
 import Producto from '../vista_producto/vista_producto';
 
-const Restaurante = () => {
-  const { nombreRestaurante } = useParams();
-  const [restaurante, setRestaurante] = useState(null);
+const Comercio = () => {
+  const {nombreComercio } = useParams();
+  const [comercio, setComercio] = useState(null);
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,37 +18,37 @@ const Restaurante = () => {
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
   useEffect(() => {
-    const fetchRestaurante = async () => {
+    const fetchComercio = async () => {
       try {
         setLoading(true);
         setError(null);
     
-        const response = await fetch(`http://localhost:3000/backend/restaurantes/nombre/${encodeURIComponent(nombreRestaurante)}`);
+        const response = await fetch(`http://localhost:3000/backend/comercio/marca/${encodeURIComponent(nombreComercio)}`);
         
         if (!response.ok) {
           if (response.status === 404) {
-            throw new Error(`Restaurante "${nombreRestaurante}" no encontrado`);
+            throw new Error(`Comercio "${nombreComercio}" no encontrado`);
           }
           throw new Error(`Error ${response.status}: ${response.statusText}`);
         }
         
         const data = await response.json();
-        setRestaurante(data[0]);
+        setComercio(data[0]);
         
-        if (data[0] && data[0].id_restaurante) {
-          await fetchProductos(data[0].id_restaurante);
+        if (data[0] && data[0].id_comercio) {
+          await fetchProductos(data[0].id_comercio);
         }
         
       } catch (err) {
         setError(err.message);
-        console.error('Error fetching restaurante:', err);
+        console.error('Error fetching comercio:', err);
         setLoading(false);
       }
     };
 
-    const fetchProductos = async (idRestaurante) => {
+    const fetchProductos = async (idComercio) => {
       try {
-        const response = await fetch(`http://localhost:3000/backend/productos/restaurante/${idRestaurante}`);
+        const response = await fetch(`http://localhost:3000/backend/productos/comercio/${idComercio}`);
         
         if (!response.ok) {
           throw new Error(`Error cargando productos: ${response.status}`);
@@ -66,14 +66,13 @@ const Restaurante = () => {
       }
     };
 
-
-    if (nombreRestaurante) {
-      fetchRestaurante();
+    if (nombreComercio) {
+      fetchComercio();
     } else {
-      setError('No se proporcionó nombre de restaurante');
+      setError('No se proporcionó nombre de comercio');
       setLoading(false);
     }
-  }, [nombreRestaurante]);
+  }, [nombreComercio]);
 
   const handleProductClick = (producto) => {
     setProductoSeleccionado(producto.id_producto);
@@ -93,9 +92,9 @@ const Restaurante = () => {
 
   if (loading) {
     return (
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
-        <p>Cargando información del restaurante...</p>
+      <div className="loading-vc-container">
+        <div className="loading-vc-spinner"></div>
+        <p>Cargando información del comercio...</p>
       </div>
     );
   }
@@ -105,7 +104,7 @@ const Restaurante = () => {
       <div className="error-container">
         <h2>Error</h2>
         <p>{error}</p>
-        <p>Nombre buscado: "{nombreRestaurante}"</p>
+        <p>Nombre buscado: "{nombreComercio}"</p>
         <button onClick={() => window.history.back()} className="back-button">
           Volver atrás
         </button>
@@ -113,11 +112,11 @@ const Restaurante = () => {
     );
   }
 
-  if (!restaurante) {
+  if (!comercio) {
     return (
-      <div className="not-found-container">
-        <h2>Restaurante no encontrado</h2>
-        <p>No se encontró información para el restaurante solicitado.</p>
+      <div className="not-found-vc-container">
+        <h2>Comercio no encontrado</h2>
+        <p>No se encontró información para el comercio solicitado.</p>
         <button onClick={() => window.history.back()} className="back-button">
           Volver atrás
         </button>
@@ -127,58 +126,57 @@ const Restaurante = () => {
 
   return (
     <>
-      <title>{restaurante.nombre_restaurante}</title>
+      <title>{comercio.nombre_marca}</title>
 
-      <div className="restaurante-container">
-        <div className="restaurante-header">
+      <div className="comercio-container">
+        <div className="comercio-header">
           <div className="header-content">
-            <div className="restaurante-encabezado">restaurante {restaurante.tipo_comida}</div>
-            <h1 className="restaurante-nombre">{restaurante.nombre_restaurante}</h1>
-            <p className="restaurante-direccion">{restaurante.direccion_restaurante}</p>
-            <p className="restaurante-pais">Colombia</p>
-            <p className="restaurante-tipo">
-              {restaurante.tipo_comida} - {restaurante.nombre_restaurante}
+            <div className="comercio-encabezado">Comercio {comercio.tipo_comercio}</div>
+            <h1 className="comercio-nombre">{comercio.nombre_marca}</h1>
+            <p className="comercio-pais">Colombia</p>
+            <p className="comercio-tipo">
+              {comercio.tipo_comercio} - {comercio.nombre_marca}
             </p>
           </div>
         </div>
 
-        <div className="productos-section">
-          <div className="productos-container">
-            <h2 className="productos-title">Productos</h2>
+        <div className="productos-vc-section">
+          <div className="productos-vc-container">
+            <h2 className="productos-vc-title">Productos</h2>
             
             {productos.length === 0 ? (
               <div className="no-products">
                 <p>No hay productos disponibles en este momento.</p>
               </div>
             ) : (
-              <div className="productos-grid">
+              <div className="productos-vc-grid">
                 {productos.map((producto) => (
                   <div 
                     key={producto.id_producto} 
-                    className="producto-card"
+                    className="producto-vc-card"
                     onClick={() => handleProductClick(producto)}
                   >
-                    <div className="producto-image-container">
+                    <div className="producto-vc-image-container">
                       <img 
                         src={producto.fotografia_producto} 
                         alt={producto.detalles_producto}
-                        className="producto-image"
+                        className="producto-vc-image"
                         onError={(e) => {
                           e.target.src = 'https://via.placeholder.com/300x200/ffffff/666666?text=Imagen+No+Disponible';
                         }}
                       />
                     </div>
                     
-                    <div className="producto-info">
-                      <h3 className="producto-nombre">{producto.detalles_producto}</h3>
-                      <p className="producto-precio">
+                    <div className="producto-vc-info">
+                      <h3 className="producto-vc-nombre">{producto.detalles_producto}</h3>
+                      <p className="producto-vc-precio">
                         ${producto.precio_producto.toLocaleString('es-CO')}
                       </p>
                     </div>
                     
-                    <div className="producto-actions">
+                    <div className="producto-vc-actions">
                       <button 
-                        className="agregar-carrito-btn"
+                        className="agregar-carrito-vc-btn"
                         onClick={(e) => {
                           e.stopPropagation(); 
                           console.log('Agregar al carrito:', producto);
@@ -193,11 +191,10 @@ const Restaurante = () => {
             )}
           </div>
         </div>
-        <Producto isOpen={modalAbierto} onClose={handleCloseModal} idProducto={productoSeleccionado} onAddToCart={handleAddToCart}
-        />
+        <Producto isOpen={modalAbierto} onClose={handleCloseModal} idProducto={productoSeleccionado} onAddToCart={handleAddToCart}/>
       </div>
     </>
   );
 };
 
-export default Restaurante;
+export default Comercio;
