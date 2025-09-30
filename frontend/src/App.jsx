@@ -10,12 +10,19 @@ import VistaComecio from "./components/vista_comercio/vista_comercio";
 import VistaRestaurante from "./components/vista_restaurante/vista_restaurante";
 import RepartidorVistaPedidos from "./pages/RepartidorVistaPedidos/RepartidorVistaPedidos";
 import AñadirFavoritos from "./pages/Cuenta/añadirFavoritos/AñadirFavoritos";
-//import SeccionCuenta from "./pages/Cuenta/seccionCuenta";
+import SeccionCuenta from "./pages/Cuenta/SeccionCuenta";
+import RegistroRestaurante from "./pages/RegistroRestaurante/RegistroRestaurante";
+
+
 const router = createBrowserRouter([
-  //{
-   // path: "/cuenta",
-   // element: <SeccionCuenta/>,
-  //},
+  {
+    path: "/registro/restaurante",
+    element: <RegistroRestaurante/>,
+  },
+  {
+    path: "/cuenta",
+    element: <SeccionCuenta/>,
+  },
   {
     path: "/",
     element: <AñadirFavoritos /> 
