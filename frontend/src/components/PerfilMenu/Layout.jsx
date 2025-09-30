@@ -4,12 +4,12 @@ import "./Layout.css"; // Importamos solo los estilos del Layout
 
 function Layout({ children }) {
   return (
-    <div className="app">
-      <div className="main-layout">
-        <div className="sidebar-container">
+    <div className="profile-layout-app">
+      <div className="profile-main-layout">
+        <div className="profile-sidebar-container">
           <Sidebar />
         </div>
-        <div className="main-content">
+        <div className="profile-main-content">
           {children}
         </div>
       </div>

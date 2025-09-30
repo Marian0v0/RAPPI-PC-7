@@ -104,8 +104,8 @@ function Sidebar() {
   };
 
   return (
-    <aside className="sidebar">
-      <div className="profile">
+    <aside className="sidebar_menu">
+      <div className="profile_name_user">
         <div className="avatar">{getAvatarInitial()}</div>
         <h3>{isLoading ? "Cargando..." : userName}</h3>
         <small style={{ color: '#666', fontSize: '12px', marginTop: '5px' }}>
@@ -114,7 +114,7 @@ function Sidebar() {
       </div>
 
       <nav>
-        <ul className="menu">
+        <ul className="menu_perfil">
           {/* Navegación según tipo de usuario */}
           {userType === "cliente" && (
             <>
