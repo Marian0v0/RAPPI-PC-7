@@ -1,0 +1,199 @@
+.payments-container {
+  width: 100%;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+}
+
+.payments-section {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  margin: 0;
+}
+
+.payments-section h2 {
+  margin: 0 0 35px 0;
+  font-size: 28px;
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 20px;
+}
+
+/* Grid de métodos de pago más amplio */
+.payment-methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+/* Método de pago individual más grande */
+.payment-method {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 16px;
+  padding: 25px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.payment-method:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: #007bff;
+}
+
+.payment-method.active {
+  background: #e3f2fd;
+  border-color: #2196f3;
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.25);
+}
+
+.method-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.method-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.payment-method.active .method-name {
+  color: #2196f3;
+}
+
+/* Indicador de selección */
+.selected-indicator {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #4caf50;
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Agregar nuevo método */
+.add-payment-method {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: 2px dashed #fff;
+  border-radius: 16px;
+  padding: 25px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: white;
+}
+
+.add-payment-method:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+}
+
+.add-icon {
+  font-size: 36px;
+  font-weight: bold;
+  width: 60px;
+  height: 60px;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-payment-method p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Información del método seleccionado */
+.selected-method-info {
+  background: #f8f9fa;
+  border-left: 5px solid #2196f3;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 30px;
+}
+
+.selected-method-info h3 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+.selected-method-info p {
+  margin: 0;
+  color: #666;
+  font-size: 16px;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .payments-section {
+    padding: 25px;
+  }
+  
+  .payment-methods-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+  }
+  
+  .payment-method,
+  .add-payment-method {
+    min-height: 120px;
+    padding: 20px 15px;
+  }
+  
+  .method-icon {
+    font-size: 36px;
+  }
+  
+  .method-name {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .payments-section {
+    padding: 20px;
+  }
+  
+  .payment-methods-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  .payments-section h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+}
