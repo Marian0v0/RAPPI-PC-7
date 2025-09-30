@@ -124,6 +124,9 @@ function Sidebar() {
               <li className={isActive("/payments")}>
                 <Link to="/payments">Pagos</Link>
               </li>
+              <li className={isActive("/registro/restaurante")}>
+                <Link to="/registro/restaurante">Registra tu negocio</Link>
+              </li>
             </>
           )}
 
