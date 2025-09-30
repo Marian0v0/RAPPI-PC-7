@@ -35,6 +35,16 @@ const Comercio = {
     return data;
   },
 
+  async findByMarca(marca) {
+    const { data, error } = await supabase
+      .from('comercio')
+      .select()
+      .eq('nombre_marca', marca);
+      
+    if (error) throw error;
+    return data;
+  },
+
   // Obtener comercio por correo
   async findByEmail(correo) {
     const { data, error } = await supabase

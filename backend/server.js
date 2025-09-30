@@ -15,6 +15,7 @@ const repartidorRoutes = require('./routes/repartidorRoutes');
 const clienteRoutes = require('./routes/client.routes');
 const pedidoRoutes = require('./routes/pedidoRoutes');
 const pagoRoutes = require('./routes/pagoRoutes');
+//const rutaRoutes = require('./routes/rutaRoutes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -26,7 +27,7 @@ app.use('/backend', clienteRoutes);
 app.use('/backend/repartidor', repartidorRoutes);
 app.use('/backend', pedidoRoutes);
 //app.use('/backend', pagoRoutes);
-app.use('/backend', repartidorRoutes);
+//app.use('/backend', rutaRoutes);
 app.use('/backend/productos', productoRoutes);
 app.use('/backend', comercioRoutes);
 app.use('/backend/restaurantes', restauranteRoutes);
