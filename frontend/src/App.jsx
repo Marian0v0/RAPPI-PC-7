@@ -28,10 +28,6 @@ const router = createBrowserRouter([
     element: <SeccionCuenta/>,
   },
   {
-    path: "/",
-    element: <AñadirFavoritos /> 
-  },
-  {
     path: "/añadirFavoritos", 
     element: <AñadirFavoritos/>,
   },
