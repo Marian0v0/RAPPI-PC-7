@@ -10,7 +10,7 @@ import VistaComecio from "./components/vista_comercio/vista_comercio";
 import VistaRestaurante from "./components/vista_restaurante/vista_restaurante";
 import RepartidorVistaPedidos from "./pages/RepartidorVistaPedidos/RepartidorVistaPedidos";
 import AñadirFavoritos from "./pages/Cuenta/añadirFavoritos/AñadirFavoritos";
-import SeccionCuenta from "./pages/Cuenta/SeccionCuenta";
+import SeccionCuenta from "./pages/Cuenta/SeccionCuenta/seccionCuenta";
 import RegistroRestaurante from "./pages/RegistroRestaurante/RegistroRestaurante";
 
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Cuenta.css';
+import './seccionCuenta.css';
 
 const Cuenta = () => {
   const [checkboxes, setCheckboxes] = useState({
