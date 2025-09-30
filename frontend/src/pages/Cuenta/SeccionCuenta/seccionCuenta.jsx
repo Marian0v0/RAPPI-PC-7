@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './seccionCuenta.css';
 
 const Cuenta = () => {
+  const navigate = useNavigate();
+  const [cliente, setCliente] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [checkboxes, setCheckboxes] = useState({
     aliado: false,
     repartidor: true,
@@ -12,6 +16,46 @@ const Cuenta = () => {
     interferencia: false
   });
 
+  useEffect(() => {
+    cargarDatosCliente();
+  }, []);
+
+  const cargarDatosCliente = async () => {
+    try {
+      // Primero intentar cargar desde localStorage
+      const clienteLocal = localStorage.getItem('cliente_data');
+      if (clienteLocal) {
+        const clienteData = JSON.parse(clienteLocal);
+        setCliente(clienteData);
+        setLoading(false);
+        return;
+      }
+
+      // Si no hay datos locales, intentar cargar desde el backend
+      const clienteId = localStorage.getItem('cliente_id');
+      if (clienteId) {
+        const response = await fetch(`https://rappi-pc-7.onrender.com/backend/clientes/${clienteId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setCliente(data);
+          localStorage.setItem('cliente_data', JSON.stringify(data));
+        }
+      }
+    } catch (error) {
+      console.error('Error cargando datos del cliente:', error);
+      // Datos mock como fallback
+      setCliente({
+        id_cliente: 1,
+        nombre_cliente: 'Usuario Demo',
+        correo_cliente: 'usuario@demo.com',
+        cel_cliente: '300 123 4567',
+        direccion_cliente: 'Calle 123 #45-67, Bogotá'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleCheckboxChange = (name) => {
     setCheckboxes(prev => ({
       ...prev,
@@ -20,14 +64,32 @@ const Cuenta = () => {
   };
 
   const handleLogout = () => {
-    // Lógica para cerrar sesión
-    console.log('Cerrar sesión');
+    localStorage.removeItem('cliente_data');
+    localStorage.removeItem('cliente_id');
+    localStorage.removeItem('carrito');
+    localStorage.removeItem('datosPago');
+    navigate('/login');
   };
 
   const handleLogoutAll = () => {
-    // Lógica para cerrar todas las sesiones
-    console.log('Cerrar todas las sesiones');
+    localStorage.clear();
+    navigate('/login');
   };
+
+  const editarPerfil = () => {
+    navigate('/perfil/editar');
+  };
+
+  if (loading) {
+    return (
+      <div className="cuenta-container">
+        <div className="loading">
+          <div className="spinner"></div>
+          <p>Cargando perfil...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="cuenta-container">
@@ -37,10 +99,15 @@ const Cuenta = () => {
       {/* Sección LIB */}
       <section className="section">
         <div className="lib-section">
-          <h2>LIB</h2>
+          <h2>Perfil</h2>
           <div className="lib-info">
-            <span>Juan </span>
-            <button className="edit-btn">✏️</button>
+            <span>{cliente?.nombre_cliente || 'Usuario'}</span>
+            <button className="edit-btn" onClick={editarPerfil}>✏️</button>
+          </div>
+          <div className="cliente-details">
+            <p><strong>Email:</strong> {cliente?.correo_cliente || 'No disponible'}</p>
+            <p><strong>Teléfono:</strong> {cliente?.cel_cliente || 'No disponible'}</p>
+            <p><strong>Dirección:</strong> {cliente?.direccion_cliente || 'No disponible'}</p>
           </div>
         </div>
       </section>

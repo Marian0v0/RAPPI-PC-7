@@ -1,0 +1,605 @@
+/* SeguimientoEntrega.css - Estilo Rappi */
+
+.seguimiento-container {
+    min-height: 100vh;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.seguimiento-header {
+    background: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.btn-volver {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.btn-volver:hover {
+    background: #f0f0f0;
+    transform: scale(1.1);
+}
+
+.seguimiento-header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+/* Content */
+.seguimiento-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Estado actual */
+.estado-actual {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    border: 2px solid #f0f0f0;
+}
+
+.estado-icono {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.estado-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.estado-info h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.estado-info p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.tiempo-estimado {
+    margin-top: 8px;
+}
+
+.tiempo {
+    background: #f0fffe;
+    color: #00d4aa;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #00d4aa;
+}
+
+/* Información del pedido */
+.pedido-info {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+}
+
+.pedido-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 16px 0;
+}
+
+.restaurante-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.restaurante-avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+}
+
+.restaurante-details h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 2px 0;
+}
+
+.restaurante-details p {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+}
+
+.productos-lista {
+    margin-bottom: 16px;
+}
+
+.producto-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.producto-item:last-child {
+    border-bottom: none;
+}
+
+.producto-nombre {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.producto-cantidad {
+    font-size: 13px;
+    color: #666;
+    background: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.pedido-total {
+    padding-top: 16px;
+    border-top: 1px solid #f0f0f0;
+    text-align: right;
+}
+
+.pedido-total span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #00d4aa;
+}
+
+/* Información del repartidor */
+.repartidor-info {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+}
+
+.repartidor-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 16px 0;
+}
+
+.repartidor-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.repartidor-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background: #f0f0f0;
+}
+
+.repartidor-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: #f0f0f0;
+}
+
+.repartidor-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.repartidor-details h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.repartidor-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.repartidor-rating span {
+    font-size: 13px;
+    color: #666;
+    background: #f8f9fa;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.ubicacion-info {
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.distancia {
+    font-size: 0.8rem;
+    color: #00d4aa;
+    font-weight: 500;
+}
+
+.tiempo-estimado {
+    font-size: 0.8rem;
+    color: #ff6b6b;
+    font-weight: 500;
+}
+
+/* Mapa de seguimiento */
+.mapa-seguimiento {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 16px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mapa-seguimiento h3 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.mapa-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mapa-mini {
+    position: relative;
+    height: 120px;
+    background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    overflow: hidden;
+}
+
+.pin-repartidor,
+.pin-destino {
+    position: absolute;
+    font-size: 20px;
+    z-index: 2;
+    animation: pulse 2s infinite;
+}
+
+.pin-repartidor {
+    animation: move 3s ease-in-out infinite;
+}
+
+.pin-destino {
+    animation: none;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes move {
+    0%, 100% { left: 30%; }
+    50% { left: 50%; }
+}
+
+.mapa-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.info-item .label {
+    font-weight: 500;
+    color: #666;
+}
+
+.info-item .value {
+    color: #333;
+    text-align: right;
+    max-width: 60%;
+    word-wrap: break-word;
+}
+
+.btn-llamar {
+    background: #00d4aa;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 212, 170, 0.3);
+}
+
+.btn-llamar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 212, 170, 0.4);
+}
+
+/* Dirección de entrega */
+.direccion-entrega {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+}
+
+.direccion-entrega h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 16px 0;
+}
+
+.direccion-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.direccion-info .icono {
+    font-size: 20px;
+    color: #00d4aa;
+}
+
+.direccion {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Footer */
+.seguimiento-footer {
+    background: white;
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+}
+
+.btn-calificar {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #00d4aa 0%, #00a085 100%);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 212, 170, 0.3);
+}
+
+.btn-calificar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 170, 0.4);
+}
+
+/* Cargando */
+.cargando {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    gap: 16px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f0f0f0;
+    border-top: 4px solid #00d4aa;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.cargando p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .seguimiento-header {
+        padding: 16px;
+    }
+    
+    .seguimiento-content {
+        padding: 16px;
+    }
+    
+    .estado-actual {
+        padding: 20px;
+        gap: 16px;
+    }
+    
+    .estado-icono {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+    
+    .estado-info h2 {
+        font-size: 16px;
+    }
+    
+    .pedido-info,
+    .repartidor-info,
+    .direccion-entrega {
+        padding: 16px;
+    }
+    
+    .repartidor-card {
+        gap: 12px;
+    }
+    
+    .repartidor-avatar {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .btn-llamar {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .seguimiento-header h1 {
+        font-size: 18px;
+    }
+    
+    .estado-actual {
+        padding: 16px;
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .estado-icono {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+    
+    .estado-info h2 {
+        font-size: 15px;
+    }
+    
+    .estado-info p {
+        font-size: 13px;
+    }
+    
+    .tiempo {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+    
+    .pedido-info,
+    .repartidor-info,
+    .direccion-entrega {
+        padding: 12px;
+    }
+    
+    .restaurante-avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    .repartidor-avatar {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .btn-llamar {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    .btn-calificar {
+        padding: 16px;
+        font-size: 15px;
+    }
+}

@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./RegistroCliente.css";
 import "../../styles/shared.css";
 import RappiLogo from "../../assets/images/logos/rappi.png";
 
 const RegistroCliente = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nombre_cliente: "",
     cel_cliente: "",
@@ -16,6 +18,8 @@ const RegistroCliente = () => {
     confirmar_contrasena: "",
     direccion_cliente: ""
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
     setFormData({
@@ -24,13 +28,16 @@ const RegistroCliente = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     
     if (formData.contrasena_cliente !== formData.confirmar_contrasena) {
-      alert("Las contraseñas no coinciden");
+      setError("Las contraseñas no coinciden");
       return;
     }
+
+    setLoading(true);
 
     const clienteData = {
       id_cliente: parseInt(formData.numero_identificacion),
@@ -46,7 +53,33 @@ const RegistroCliente = () => {
       direccion_cliente: formData.direccion_cliente
     };
 
-    console.log("Datos del cliente:", clienteData);
+    try {
+      const response = await fetch('https://rappi-pc-7.onrender.com/backend/new-cliente', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(clienteData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          alert('¡Cuenta creada exitosamente!');
+          navigate('/login');
+        } else {
+          setError(data.message || 'Error al crear la cuenta');
+        }
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || 'Error al crear la cuenta');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Error de conexión. Intenta nuevamente.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,6 +98,11 @@ const RegistroCliente = () => {
         
         <div className="right-panel">
           <h2>Crear cuenta de Cliente</h2>
+          {error && (
+            <div className="error-message">
+              {error}
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="registro-form">
             <div className="form-group">
               <input
@@ -181,8 +219,13 @@ const RegistroCliente = () => {
               />
             </div>
 
-            <button type="submit" className="base-button registro-submit">
-              Crear Cuenta
+            <button 
+              type="submit" 
+              className="base-button registro-submit"
+              disabled={loading}
+              style={{ opacity: loading ? 0.6 : 1 }}
+            >
+              {loading ? 'Creando cuenta...' : 'Crear Cuenta'}
             </button>
           </form>
           
