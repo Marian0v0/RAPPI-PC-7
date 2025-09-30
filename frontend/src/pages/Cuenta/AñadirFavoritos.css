@@ -1,0 +1,155 @@
+
+.rappi-container {
+  max-width: 375px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #ffffff;
+  min-height: 100vh;
+  color: #333333;
+}
+
+/* Header de Favoritos */
+.favorites-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  color: #000000;
+}
+
+/* Estado vacío de favoritos */
+.empty-favorites {
+  margin-bottom: 32px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.empty-state p {
+  margin: 4px 0;
+  color: #666666;
+  font-size: 14px;
+}
+
+.empty-state p:first-child {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Secciones generales */
+.section {
+  margin-bottom: 24px;
+}
+
+.section h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: #000000;
+}
+
+/* Grid de supermercados */
+.super-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.market-card {
+  background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+  box-shadow: 0 2px 8px rgba(255, 107, 0, 0.3);
+}
+
+.market-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.delivery-time {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* Línea divisoria */
+.divider {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 24px 0;
+}
+
+/* Lista de restaurantes */
+.restaurants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.restaurant-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  background-color: #ffffff;
+}
+
+.restaurant-main-info {
+  margin-bottom: 16px;
+}
+
+.restaurant-name-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.restaurant-name {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.restaurant-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note {
+  font-size: 14px;
+  color: #666666;
+}
+
+.distance {
+  font-size: 12px;
+  color: #999999;
+}
+
+/* Botón de añadir favoritos */
+.add-favorite-btn {
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid #ff6b00;
+  color: #ff6b00;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-favorite-btn:hover {
+  background-color: #fff0e6;
+}
+
+.add-favorite-btn:active {
+  background-color: #ffe0cc;
+}
