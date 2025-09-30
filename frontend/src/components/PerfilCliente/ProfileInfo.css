@@ -1,0 +1,248 @@
+.profile-info {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: none;
+}
+
+.profile-info h2 {
+  margin: 0 0 30px 0;
+  font-size: 28px;
+  color: #333;
+  font-weight: 600;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 20px;
+}
+
+/* Grid de 2 columnas más amplio */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 50px;
+  margin-bottom: 40px;
+}
+
+.form-grid > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grid label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Display de datos (solo lectura) - REEMPLAZA LOS INPUTS */
+.data-display {
+  font-size: 18px;
+  color: #333;
+  padding: 12px 0;
+  border-bottom: 2px solid #e0e0e0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  background: #fafafa;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  font-weight: 500;
+}
+
+/* Campo que ocupa todo el ancho */
+.full-width {
+  grid-column: span 2;
+}
+
+/* Botones */
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-top: 25px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.btn-update {
+  background: #00c853;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 16px;
+}
+
+.btn-update:hover {
+  background: #00b34a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
+}
+
+.btn-green {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 16px;
+}
+
+.btn-green:hover {
+  background: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.btn-red {
+  background: #fff;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+  padding: 15px 30px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 16px;
+}
+
+.btn-red:hover {
+  background: #dc3545;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+/* Estados de carga y error */
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+  font-weight: 500;
+}
+
+.error-message {
+  text-align: center;
+  padding: 40px;
+  color: #dc3545;
+}
+
+.error-message p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/* Estados deshabilitados */
+.buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.buttons button:disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .profile-info {
+    padding: 25px;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  .full-width {
+    grid-column: span 1;
+  }
+  
+  .buttons {
+    flex-direction: column;
+  }
+  
+  .buttons button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-info {
+    padding: 20px;
+  }
+  
+  .profile-info h2 {
+    font-size: 24px;
+  }
+  
+  .data-display {
+    font-size: 16px;
+    padding: 10px 12px;
+  }
+  
+  .form-grid {
+    gap: 20px;
+  }
+}
+
+/* Agregar al final del ProfileInfo.css existente */
+
+/* Estilos para inputs en modo edición */
+.data-input {
+  width: 100%;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 12px 15px;
+  outline: none;
+  color: #333;
+  background: white;
+  transition: border-color 0.3s;
+}
+
+.data-input:focus {
+  border-color: #00c853;
+}
+
+/* Estilos para textarea */
+.data-input[type="textarea"] {
+  min-height: 80px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Estilos para select */
+.data-input[type="select"] {
+  cursor: pointer;
+}
+
+/* Botones de edición */
+.btn-edit-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Header con botones */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
