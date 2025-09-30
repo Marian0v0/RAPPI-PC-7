@@ -17,7 +17,6 @@ const Producto = ({ isOpen, onClose, idProducto, onAddToCart }) => {
     setLoading(true);
     setError(null);
     try {
-      // Reemplaza {url} con tu URL base
       const response = await fetch(`https://rappi-pc-7.onrender.com/backend/productos/id/${idProducto}`);
       
       if (!response.ok) {
@@ -35,27 +34,32 @@ const Producto = ({ isOpen, onClose, idProducto, onAddToCart }) => {
   };
 
   const handleAumentarCantidad = () => {
-    setCantidad(prev => prev + 1);
+    setCantidad(cantidad + 1);
   };
 
   const handleDisminuirCantidad = () => {
     if (cantidad > 1) {
-      setCantidad(prev => prev - 1);
+      setCantidad(cantidad - 1);
     }
   };
 
   const handleAgregarCarrito = () => {
     if (producto) {
-      onAddToCart({
-        ...producto,
-        cantidad
-      });
-    }
+    const productoConCantidad = {
+      ...producto,
+      cantidad: cantidad
+    };
+
+    const event = new CustomEvent('agregarAlCarrito', {
+      detail: productoConCantidad
+    });
+    window.dispatchEvent(event);
+  }
   };
 
   const handleAgregarYPagar = () => {
     handleAgregarCarrito();
-    // Aquí redirigirías a la página de pago
+    // redirigir al pago xd
     console.log('Redirigiendo a página de pago');
   };
 

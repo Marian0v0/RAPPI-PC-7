@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./ComercioRestaurante.css";
 
-const API_BASE_URL = "http://localhost:3000/backend";
+const API_BASE_URL = "https://rappi-pc-7.onrender.com/backend";
 
 function CommerceProfile() {
   const [commerceData, setCommerceData] = useState({});

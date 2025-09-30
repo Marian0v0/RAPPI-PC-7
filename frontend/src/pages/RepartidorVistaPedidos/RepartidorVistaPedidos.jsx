@@ -10,7 +10,7 @@ const RepartidorVistaPedidos = () => {
 
   // Cargar pedidos desde la API al montar el componente
   useEffect(() => {
-    fetch("http://localhost:3000/backend/repartidor/pendientes")
+    fetch("https://rappi-pc-7.onrender.com/backend/repartidor/pendientes")
       .then((res) => res.json())
       .then((data) => setPedidos(data))
       .catch((err) => console.error("Error al obtener pedidos:", err));
@@ -18,7 +18,7 @@ const RepartidorVistaPedidos = () => {
 
   const handleAceptar = async (id) => {
     try {
-      const res = await fetch("http://localhost:3000/backend/repartidor/pedidos/aceptar", {
+      const res = await fetch("https://rappi-pc-7.onrender.com/backend/repartidor/pedidos/aceptar", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
@@ -36,7 +36,7 @@ const RepartidorVistaPedidos = () => {
   const handleRechazar = async (id) => {
     if (window.confirm("¿Seguro que quieres rechazar este pedido?")) {
       try {
-        const res = await fetch("http://localhost:3000/backend/repartidor/pedidos/rechazar", {
+        const res = await fetch("https://rappi-pc-7.onrender.com/backend/repartidor/pedidos/rechazar", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ id }),
