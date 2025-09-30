@@ -1,0 +1,234 @@
+/* Contenedor principal con barra lateral */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Barra lateral */
+.sidebar {
+  width: 250px;
+  background-color: #2c2c2c;
+  color: white;
+  padding: 20px 0;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+}
+
+.sidebar-header {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid #444;
+  margin-bottom: 20px;
+}
+
+.sidebar-header h2 {
+  color: #ff6b00;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav li {
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+}
+
+.sidebar-nav li:hover {
+  background-color: #3c3c3c;
+  border-left-color: #ff6b00;
+}
+
+.sidebar-nav li.active {
+  background-color: #3c3c3c;
+  border-left-color: #ff6b00;
+  color: #ff6b00;
+  font-weight: 600;
+}
+
+.sidebar-nav li span {
+  font-size: 16px;
+}
+
+/* Contenido principal */
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Estilos existentes del contenido */
+.rappi-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  color: #333333;
+}
+
+.favorites-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #000000;
+}
+
+.empty-favorites {
+  margin-bottom: 32px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.empty-state p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.section h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: #000000;
+}
+
+.super-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.market-card {
+  background: linear-gradient(135deg, #ff6b00 0%, #ff8c00 100%);
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+  box-shadow: 0 2px 8px rgba(255, 107, 0, 0.3);
+}
+
+.market-info h3 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.market-card span {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 24px 0;
+}
+
+.restaurants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.restaurant-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.restaurant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.restaurant-header .time {
+  color: #ff6b00;
+  font-weight: bold;
+}
+
+.restaurant-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.note {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.distance {
+  color: #999;
+  font-size: 0.8em;
+}
+
+.add-favorite-btn {
+  background-color: #ff6b00;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+}
+
+.add-favorite-btn:hover {
+  background-color: #e55e00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+  
+  .main-content {
+    margin-left: 200px;
+  }
+  
+  .super-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 60px;
+  }
+  
+  .sidebar-header h2 {
+    font-size: 18px;
+  }
+  
+  .sidebar-nav li span {
+    display: none;
+  }
+  
+  .main-content {
+    margin-left: 60px;
+  }
+}

@@ -9,6 +9,9 @@ import RegistroRepartidor from "./pages/RegistroRepartidor/RegistroRepartidor";
 import VistaComecio from "./components/vista_comercio/vista_comercio";
 import VistaRestaurante from "./components/vista_restaurante/vista_restaurante";
 import RepartidorVistaPedidos from "./pages/RepartidorVistaPedidos/RepartidorVistaPedidos";
+import AñadirFavoritos from "./pages/Cuenta/añadirFavoritos/AñadirFavoritos";
+import SeccionCuenta from "./pages/Cuenta/SeccionCuenta/seccionCuenta";
+import RegistroRestaurante from "./pages/RegistroRestaurante/RegistroRestaurante";
 import Layout from "./components/PerfilMenu/Layout";
 import ProfileInfo from "./components/PerfilCliente/ProfileInfo";
 import Payments from "./components/PerfilCliente/Payments";
@@ -16,6 +19,22 @@ import RestaurantProfile from "./components/PerfilComercio/RestaurantProfile";
 import CommerceProfile from "./components/PerfilComercio/CommerceProfile";
 
 const router = createBrowserRouter([
+  {
+    path: "/registro/restaurante",
+    element: <RegistroRestaurante/>,
+  },
+  {
+    path: "/cuenta",
+    element: <SeccionCuenta/>,
+  },
+  {
+    path: "/",
+    element: <AñadirFavoritos /> 
+  },
+  {
+    path: "/añadirFavoritos", 
+    element: <AñadirFavoritos/>,
+  },
   {
     path: "/",
     element: <Navigate to="/login"/>
