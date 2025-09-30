@@ -1,65 +1,66 @@
 /* Layout.css - Estilos específicos para páginas con Sidebar */
 
 /* Layout principal con Sidebar */
+.profile-layout-app {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  width: 100%;
+}
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
-    display: flex;
+.profile-main-layout {
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  min-height: calc(100vh - 60px); /* Resta el padding vertical */
+}
+
+/* Contenedor de la barra lateral */
+.profile-sidebar-container {
+  width: 300px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  padding: 20px;
+  height: fit-content;
+}
+
+/* Contenido principal que ocupa el resto del espacio */
+.profile-main-content {
+  flex: 1;
+  min-width: 0; /* Permite que se reduzca correctamente */
+  border-radius: 12px;
+  padding: 30px;
+}
+
+/* 📱 Responsive para Layout */
+@media (max-width: 1024px) {
+  .profile-main-layout {
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .profile-sidebar-container {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-main-layout {
     flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+  }
+  
+  .profile-sidebar-container {
     width: 100%;
-    height: 100%;
-  }
-  .app {
-    display: flex;
-    min-height: 100vh;
-    background-color: #f8f9fa;
   }
   
-  .main-layout {
-    display: flex;
-    gap: 30px;
-    padding: 30px;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    flex: 1;
+  .profile-main-content {
+    padding: 20px;
   }
-  
-  /* Sidebar fijo a la izquierda */
-  .sidebar-container {
-    width: 280px;
-    flex-shrink: 0;
-  }
-  
-  /* Contenido principal que ocupa el resto del espacio */
-  .main-content {
-    flex: 1;
-    min-width: 0; /* Permite que se reduzca correctamente */
-  }
-  
-  /* 📱 Responsive para Layout */
-  @media (max-width: 1024px) {
-    .main-layout {
-      gap: 20px;
-      padding: 20px;
-    }
-    
-    .sidebar-container {
-      width: 250px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .main-layout {
-      flex-direction: column;
-      gap: 20px;
-      padding: 15px;
-    }
-    
-    .sidebar-container {
-      width: 100%;
-    }
-  }
+}

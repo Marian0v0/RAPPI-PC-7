@@ -1,4 +1,4 @@
-.sidebar {
+.sidebar_menu {
   background: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -8,14 +8,14 @@
   height: fit-content; /* 🔹 Agregado para que no ocupe toda la altura */
 }
 
-.profile {
+.profile_name_user {
   text-align: center;
   margin-bottom: 25px;
   padding-bottom: 20px;
   border-bottom: 1px solid #f0f0f0; /* 🔹 Línea separadora */
 }
 
-.profile h3 {
+.profile_name_user h3 {
   margin: 10px 0 0 0;
   font-size: 16px;
   color: #333;
@@ -35,14 +35,14 @@
   align-items: center;
 }
 
-.menu {
+.menu_perfil {
   list-style: none;
   padding: 0;
   margin: 0;
   font-size: 15px;
 }
 
-.menu li {
+.menu_perfil li {
   padding: 12px;
   cursor: pointer;
   border-radius: 8px;
@@ -53,16 +53,16 @@
   margin-bottom: 5px; /* 🔹 Espacio entre items */
 }
 
-.menu li:hover {
+.menu_perfil li:hover {
   background: #f8f9fa;
 }
 
-.menu li.active {
+.menu_perfil li.active {
   background: #e3f2fd; /* 🔹 Color para item activo */
   color: #1976d2;
 }
 
-.menu li a {
+.menu_perfil li a {
   text-decoration: none;
   color: inherit;
   display: flex;
@@ -73,7 +73,7 @@
 
 /* 📱 Responsive */
 @media (max-width: 768px) {
-  .sidebar {
+  .sidebar_menu {
     width: 100%;
     max-width: none;
     margin-bottom: 20px;
