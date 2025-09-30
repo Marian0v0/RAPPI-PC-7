@@ -18,7 +18,7 @@ const Producto = ({ isOpen, onClose, idProducto, onAddToCart }) => {
     setError(null);
     try {
       // Reemplaza {url} con tu URL base
-      const response = await fetch(`http://localhost:3000/backend/productos/id/${idProducto}`);
+      const response = await fetch(`https://rappi-pc-7.onrender.com/backend/productos/id/${idProducto}`);
       
       if (!response.ok) {
         throw new Error('Error al cargar el producto');

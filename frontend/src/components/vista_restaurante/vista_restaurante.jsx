@@ -23,7 +23,7 @@ const Restaurante = () => {
         setLoading(true);
         setError(null);
     
-        const response = await fetch(`http://localhost:3000/backend/restaurantes/nombre/${encodeURIComponent(nombreRestaurante)}`);
+        const response = await fetch(`https://rappi-pc-7.onrender.com/backend/restaurantes/nombre/${encodeURIComponent(nombreRestaurante)}`);
         
         if (!response.ok) {
           if (response.status === 404) {
@@ -48,7 +48,7 @@ const Restaurante = () => {
 
     const fetchProductos = async (idRestaurante) => {
       try {
-        const response = await fetch(`http://localhost:3000/backend/productos/restaurante/${idRestaurante}`);
+        const response = await fetch(`https://rappi-pc-7.onrender.com/backend/productos/restaurante/${idRestaurante}`);
         
         if (!response.ok) {
           throw new Error(`Error cargando productos: ${response.status}`);

@@ -23,7 +23,7 @@ const Comercio = () => {
         setLoading(true);
         setError(null);
     
-        const response = await fetch(`http://localhost:3000/backend/comercio/marca/${encodeURIComponent(nombreComercio)}`);
+        const response = await fetch(`https://rappi-pc-7.onrender.com/backend/comercio/marca/${encodeURIComponent(nombreComercio)}`);
         
         if (!response.ok) {
           if (response.status === 404) {
@@ -48,7 +48,7 @@ const Comercio = () => {
 
     const fetchProductos = async (idComercio) => {
       try {
-        const response = await fetch(`http://localhost:3000/backend/productos/comercio/${idComercio}`);
+        const response = await fetch(`https://rappi-pc-7.onrender.com/backend/productos/comercio/${idComercio}`);
         
         if (!response.ok) {
           throw new Error(`Error cargando productos: ${response.status}`);
