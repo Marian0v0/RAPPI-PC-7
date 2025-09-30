@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './carrito.css';
 
 const Carrito = () => {
+  const navigate = useNavigate();
   const [carritoAbierto, setCarritoAbierto] = useState(false);
   const [carrito, setCarrito] = useState([]);
+  const [cupon, setCupon] = useState('');
+  const [descuento, setDescuento] = useState(0);
+  const [propina, setPropina] = useState(0);
+  const [tipoPropina, setTipoPropina] = useState('porcentaje'); // 'porcentaje' o 'fijo'
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const carritoGuardado = localStorage.getItem('carrito');
@@ -65,23 +72,70 @@ const Carrito = () => {
     );
   };
 
-  const calcularTotal = () => {
+  const calcularSubtotal = () => {
     return carrito.reduce((total, item) => {
       return total + (item.precio_producto * item.cantidad);
     }, 0);
   };
 
+  const calcularPropina = () => {
+    if (tipoPropina === 'porcentaje') {
+      return (calcularSubtotal() * propina) / 100;
+    }
+    return propina;
+  };
+
+  const calcularTotal = () => {
+    const subtotal = calcularSubtotal();
+    const propinaCalculada = calcularPropina();
+    return subtotal - descuento + propinaCalculada;
+  };
+
+  const aplicarCupon = async () => {
+    if (!cupon.trim()) return;
+    
+    setLoading(true);
+    try {
+      const response = await fetch('https://rappi-pc-7.onrender.com/backend/validar-cupon', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ codigo: cupon }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.valido) {
+          setDescuento(data.descuento);
+          alert(`¡Cupón aplicado! Descuento: $${data.descuento.toLocaleString('es-CO')}`);
+        } else {
+          alert('Cupón no válido');
+        }
+      } else {
+        alert('Error al validar el cupón');
+      }
+    } catch (error) {
+      console.error('Error validando cupón:', error);
+      alert('Error al validar el cupón');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleIrAPagar = () => {
     const datosPago = {
       productos: carrito,
+      subtotal: calcularSubtotal(),
+      descuento: descuento,
+      propina: calcularPropina(),
       total: calcularTotal(),
+      cupon: cupon,
       timestamp: new Date().toISOString()
     };
     
     localStorage.setItem('datosPago', JSON.stringify(datosPago));
-    
-    // Redirigir a la página de pago (cambiar cuando metan esto a la ruta que sea xd)
-    window.location.href = '/pago';
+    navigate('/checkout');
   };
 
   const toggleCarrito = () => {
@@ -174,10 +228,117 @@ const Carrito = () => {
                     ))}
                   </div>
 
+                  {/* Cupón */}
+                  <div className="cupon-section">
+                    <h4>¿Tienes un cupón?</h4>
+                    <div className="cupon-input-group">
+                      <input
+                        type="text"
+                        placeholder="Código del cupón"
+                        value={cupon}
+                        onChange={(e) => setCupon(e.target.value)}
+                        className="cupon-input"
+                      />
+                      <button 
+                        className="btn-aplicar-cupon"
+                        onClick={aplicarCupon}
+                        disabled={loading || !cupon.trim()}
+                      >
+                        {loading ? 'Validando...' : 'Aplicar'}
+                      </button>
+                    </div>
+                    {descuento > 0 && (
+                      <div className="descuento-aplicado">
+                        <span>Descuento aplicado: -${descuento.toLocaleString('es-CO')}</span>
+                        <button 
+                          className="btn-remover-descuento"
+                          onClick={() => {
+                            setDescuento(0);
+                            setCupon('');
+                          }}
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Propina */}
+                  <div className="propina-section">
+                    <h4>Propina para el repartidor</h4>
+                    <div className="propina-opciones">
+                      <div className="propina-tipo">
+                        <label>
+                          <input
+                            type="radio"
+                            name="tipoPropina"
+                            value="porcentaje"
+                            checked={tipoPropina === 'porcentaje'}
+                            onChange={(e) => setTipoPropina(e.target.value)}
+                          />
+                          Porcentaje
+                        </label>
+                        <label>
+                          <input
+                            type="radio"
+                            name="tipoPropina"
+                            value="fijo"
+                            checked={tipoPropina === 'fijo'}
+                            onChange={(e) => setTipoPropina(e.target.value)}
+                          />
+                          Monto fijo
+                        </label>
+                      </div>
+                      
+                      {tipoPropina === 'porcentaje' ? (
+                        <div className="propina-porcentajes">
+                          {[10, 15, 20, 25].map((porcentaje) => (
+                            <button
+                              key={porcentaje}
+                              className={`propina-btn ${propina === porcentaje ? 'activo' : ''}`}
+                              onClick={() => setPropina(porcentaje)}
+                            >
+                              {porcentaje}%
+                            </button>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="propina-monto">
+                          <input
+                            type="number"
+                            placeholder="Monto de propina"
+                            value={propina || ''}
+                            onChange={(e) => setPropina(Number(e.target.value) || 0)}
+                            className="propina-input"
+                            min="0"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
                   <div className="carrito-footer">
-                    <div className="carrito-total">
-                      <span>Total:</span>
-                      <strong>${calcularTotal().toLocaleString('es-CO')}</strong>
+                    <div className="carrito-resumen">
+                      <div className="resumen-linea">
+                        <span>Subtotal:</span>
+                        <span>${calcularSubtotal().toLocaleString('es-CO')}</span>
+                      </div>
+                      {descuento > 0 && (
+                        <div className="resumen-linea descuento">
+                          <span>Descuento:</span>
+                          <span>-${descuento.toLocaleString('es-CO')}</span>
+                        </div>
+                      )}
+                      {calcularPropina() > 0 && (
+                        <div className="resumen-linea">
+                          <span>Propina:</span>
+                          <span>${calcularPropina().toLocaleString('es-CO')}</span>
+                        </div>
+                      )}
+                      <div className="resumen-linea total">
+                        <span>Total:</span>
+                        <strong>${calcularTotal().toLocaleString('es-CO')}</strong>
+                      </div>
                     </div>
                     
                     <button 

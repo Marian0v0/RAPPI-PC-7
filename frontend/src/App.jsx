@@ -17,11 +17,24 @@ import ProfileInfo from "./components/PerfilCliente/ProfileInfo";
 import Payments from "./components/PerfilCliente/Payments";
 import RestaurantProfile from "./components/PerfilComercio/RestaurantProfile";
 import CommerceProfile from "./components/PerfilComercio/CommerceProfile";
+import Checkout from "./pages/Checkout/Checkout.jsx";
+import MetodosPago from "./pages/Checkout/MetodosPago";
+import SeguimientoEntrega from "./pages/Entrega/SeguimientoEntrega.jsx";
+import Home from "./pages/Home/Home";
+import RegistroComercio from "./pages/RegistroComercio/RegistroComercio";
+import DashboardRestaurante from "./pages/DashboardRestaurante/DashboardRestaurante";
+import DashboardComercio from "./pages/DashboardComercio/DashboardComercio";
+import Busqueda from "./pages/Busqueda/Busqueda";
+
 
 const router = createBrowserRouter([
   {
     path: "/registro/restaurante",
     element: <RegistroRestaurante/>,
+  },
+  {
+    path: "/registro/comercio",
+    element: <RegistroComercio/>,
   },
   {
     path: "/cuenta",
@@ -60,6 +73,10 @@ const router = createBrowserRouter([
     element: <ClienteLogin/>,
   },
   {
+    path: "/home",
+    element: <Home/>,
+  },
+  {
     path:"/comercios/:nombreComercio",
     element: <VistaComecio/>,
   },
@@ -95,6 +112,30 @@ const router = createBrowserRouter([
     path: "/commerce-profile",
     element: <Layout><CommerceProfile /></Layout>,
   },
+  {
+    path: "/checkout",
+    element: <Checkout/>,
+  },
+  {
+    path: "/metodos-pago",
+    element: <MetodosPago/>,
+  },
+  {
+    path: "/seguimiento/:id_pedido",
+    element: <SeguimientoEntrega/>,
+  },
+  {
+    path: "/dashboard/restaurante",
+    element: <DashboardRestaurante/>,
+  },
+  {
+    path: "/dashboard/comercio",
+    element: <DashboardComercio/>,
+  },
+  {
+    path: "/busqueda",
+    element: <Busqueda/>,
+  }
 ]);
 
 

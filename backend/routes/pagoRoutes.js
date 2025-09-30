@@ -19,7 +19,7 @@ router.get('/pagos/calcular/:id_pedido', pagoController.calcularCostoPedido);
 router.post('/pagos/realizar', pagoController.realizarPago);
 router.get('/metodos-pago', pagoController.getMetodosPago);
 router.get('/metodos-pago/:id_metodo', pagoController.getMetodoById);
-router.get('/metodos-pago/cliente/:id_cliente', pagoController.getMetodosByCliente);
+router.get('/megtodos-pago/cliente/:id_cliente', pagoController.getMetodosByCliente);
 router.post('/metodos-pago/create', pagoController.createMetodoPago);
 router.post('/metodos-pago/efectivo', pagoController.createEfectivo);
 router.post('/metodos-pago/tarjeta', pagoController.createTarjeta);
