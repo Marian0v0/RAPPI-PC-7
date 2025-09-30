@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import "./Sidebar.css";
 
 // URL base de tu API
-const API_BASE_URL = "http://localhost:3000/backend";
+const API_BASE_URL = "https://rappi-pc-7.onrender.com/backend";
 
 function Sidebar() {
   const location = useLocation();

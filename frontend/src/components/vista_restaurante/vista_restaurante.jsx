@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './vista_restaurante.css';
+import Carrito from '../carrito/carrito';
 import Producto from '../vista_producto/vista_producto';
 
 const Restaurante = () => {
@@ -86,9 +87,8 @@ const Restaurante = () => {
   };
 
   const handleAddToCart = (productoConCantidad) => {
-    // Aquí implementarás la lógica para agregar al carrito
-    console.log('Producto agregado al carrito:', productoConCantidad);
-    // Actualizar estado del carrito aquí
+    const event = new CustomEvent('agregarAlCarrito', { detail: productoConCantidad });
+    window.dispatchEvent(event);
   };
 
   if (loading) {
@@ -180,8 +180,8 @@ const Restaurante = () => {
                       <button 
                         className="agregar-carrito-btn"
                         onClick={(e) => {
+                          handleAddToCart({...producto, cantidad: 1});
                           e.stopPropagation(); 
-                          console.log('Agregar al carrito:', producto);
                         }}
                       >
                         Agregar al Carrito
@@ -193,8 +193,8 @@ const Restaurante = () => {
             )}
           </div>
         </div>
-        <Producto isOpen={modalAbierto} onClose={handleCloseModal} idProducto={productoSeleccionado} onAddToCart={handleAddToCart}
-        />
+        <Producto isOpen={modalAbierto} onClose={handleCloseModal} idProducto={productoSeleccionado} onAddToCart={handleAddToCart}/>
+        <Carrito/>
       </div>
     </>
   );
